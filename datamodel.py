@@ -66,7 +66,6 @@ class Transport_mode(Model):
     class Meta:
         database = db
 
-
 def main():
     db.connect()
     db.create_tables([Citizen,Trip,Question,Stop_answer,Transport_mode])
