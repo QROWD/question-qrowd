@@ -7,6 +7,9 @@ class Citizen(Model):
     collection_mode = CharField() #CONTINUOUS or ON-OFF
     question_preference = CharField(null=True) #SEGMENT or POINTS
 
+    class Meta:
+        database = db
+
 class Trip(Model):
     trip_id = IntegerField(primary_key=True)
     citizen_id = ForeignKeyField(Citizen, backref = 'citizens')
