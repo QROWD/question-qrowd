@@ -1,0 +1,409 @@
+[
+  {
+    "q": {
+      "id": 1,
+      "c": [
+        
+      ],
+      "t": "l",
+      "l": {
+        "lat": 46.0661043,
+        "lon": 11.121961
+      },
+      "p": [
+        {
+          "t": "We detected that on {trip_data[start_date]} at {trip_data[start_time]}, you started a trip near the point on the map below, close to {trip_data[start_address]}. Is this correct?",
+          "l": "en-US"
+        },
+        {
+           "t": "Abbiamo rilevato che il giorno {trip_data[start_date]} alle {trip_data[start_time]} hai effettuato uno spostamento con punto di partenza vicino a {trip_data[start_address]}. È corretto?",
+          "l": "it-IT"
+        }
+      ]
+    },
+    "a": [
+      {
+        "id": 1,
+        "c_id": -1,
+        "p": [
+          {
+            "t": "Yes",
+            "l": "en-US"
+          },
+          {
+            "t": "Sì",
+            "l": "it-IT"
+          }
+        ],
+        "c": [
+          
+        ]
+      },
+      {
+        "id": 2,
+        "c_id": -1,
+        "p": [
+          {
+            "t": "No, I was not there at that time",
+            "l": "en-US"
+          },
+          {
+            "t": "No, non mi trovavo lì",
+            "l": "it-IT"
+          }
+        ],
+        "c": [
+          
+        ]
+      },
+      {
+        "id": 3,
+        "c_id": -1,
+        "p": [
+          {
+            "t": "No, I was there but I did not start a trip at that time",
+            "l": "en-US"
+          },
+          {
+            "t": "No, mi trovavo lì ma non ho effettuato uno spostamento a quell'ora",
+            "l": "it-IT"
+          }
+        ],
+        "c": [
+          
+        ]
+      },
+      {
+        "id": 4,
+        "c_id": -1,
+        "p": [
+          {
+            "t": "I don't remember",
+            "l": "en-US"
+          },
+          {
+            "t": "Non mi ricordo",
+            "l": "it-IT"
+          }
+        ],
+        "c": [
+          
+        ]
+      }
+    ]
+  },
+  {
+    "q": {
+      "id": 2,
+      "c": [
+        {
+          "q": 1,
+          "a": 1
+        }
+      ],
+      "t": "l",
+      "l": {
+        "lat": 46.0861043,
+        "lon": 11.111961
+      },
+      "p": [
+        {
+          "l": "en-US",
+          "t": "Great!, we then detected that you traveled somewhere near {trip_data[stop_address]}, arriving at {trip_data[stop_time]}. Is this correct?"
+        },
+        {
+          "l": "it-IT",
+          "t": "Ottimo! Abbiamo poi rilevato che ti sei spostato/a fino a {trip_data[stop_address]}, dove sei arrivato all'ora {trip_data[stop_time]}. È corretto?"
+        }
+      ]
+    },
+    "a": [
+         {
+            "id":1,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"Yes, I reached my final destination"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"Sì, sono arrivato/a a destinazione"
+               }
+            ]
+         },
+         {
+            "id":2,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"Yes, I stopped there to change mode of transport"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"Sì, mi sono fermato/a per cambiare mezzo di trasporto"
+               }
+            ]
+         },
+         {
+            "id":3,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"No, I did not stop there"
+               },
+               {
+                  "l":"it-IT",
+                  "t":" No, non mi sono fermato lì"
+               }
+            ]
+         },
+         {
+            "id":4,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"I don't remember"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"Non mi ricordo"
+               }
+            ]
+         }
+    ]
+  },
+  {
+    "q": {
+      "id": 3,
+      "c": [
+        {
+          "q": 2,
+          "a": 1
+        },
+        {
+          "q": 2,
+          "a": 2
+        }
+
+      ],
+      "t": "t",
+      "at": "s",
+      "p": [
+        {
+          "l": "en-US",
+          "t": "Which mode of transport you used?"
+        },
+        {
+          "l": "it-IT",
+          "t": "Come ci sei arrivato?"
+        }
+      ]
+    },
+    "a": [
+      {
+        "id": 1,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Train"
+          },
+          {
+            "l": "it-IT",
+            "t": "Treno"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Bus"
+          },
+          {
+            "l": "it-IT",
+            "t": "Bus"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Cableway"
+          },
+          {
+            "l": "it-IT",
+            "t": "Funivia"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Private bycicle"
+          },
+          {
+            "l": "it-IT",
+            "t": "Bicicletta privata"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Electric private bycicle"
+          },
+          {
+            "l": "it-IT",
+            "t": "Bicicletta privata elettrica"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Bike sharing bycicle"
+          },
+          {
+            "l": "it-IT",
+            "t": "Bicicletta bike sharing"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Electric bike sharing bycicle"
+          },
+          {
+            "l": "it-IT",
+            "t": "Bicicletta bike sharing elettrica"
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Car"
+          },
+          {
+            "l": "it-IT",
+            "t": "Automobile"
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Motorcycle"
+          },
+          {
+            "l": "it-IT",
+            "t": "Moto"
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Scooter"
+          },
+          {
+            "l": "it-IT",
+            "t": "Scooter"
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "c": [
+          ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "By foot"
+          },
+          {
+            "l": "it-IT",
+            "t": "A piedi"
+          }
+        ]
+      }
+    ]
+  }
+]
+
+

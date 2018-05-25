@@ -1,0 +1,537 @@
+[
+   {
+      "q":{
+         "id":1,
+         "c":[
+
+         ],
+         "t":"ms",
+         "la":[
+            46.041332,
+            46.039488,
+            46.038703,
+            46.039078,
+            46.040171,
+            46.042424,
+            46.043892,
+            46.048023,
+            46.054645,
+            46.063045,
+            46.066857
+         ],
+         "lo":[
+            11.137968,
+            11.137673,
+            11.138460,
+            11.140378,
+            11.141608,
+            11.140969,
+            11.140526,
+            11.142985,
+            11.148740,
+            11.150149,
+            11.150428
+         ],
+         "p":[
+            {
+               "l":"en-US",
+               "t":"We detected that on {trip_data[start_date]} you made a trip from {trip_data[start_time]} to {trip_data[stop_time]} from  {trip_data[start_address]} to {trip_data[stop_address]}. Is this correct?"
+            },
+            {
+               "l":"it-IT",
+               "t":"Abbiamo rilevato che il giorno {trip_data[start_date]} dalle {trip_data[start_time]} alle {trip_data[stop_time]} hai effettuato uno spostamento da {trip_data[start_address]} a {trip_data[stop_address]}. È corretto?"
+            }
+         ]
+      },
+      "a":[
+         {
+            "id":1,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"Yes"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"Sì"
+               }
+            ]
+         },
+         {
+            "id":2,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"No"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"No"
+               }
+            ]
+         },
+         {
+            "id":3,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"I don't remember"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"Non mi ricordo"
+               }
+            ]
+         }
+      ]         
+   },
+
+   {
+    "q": {
+      "id": 2,
+      "c": [
+        {
+          "q": 1,
+          "a": 1
+        }
+      ],
+         "t":"ms",
+         "la":[
+            46.041332,
+            46.039488,
+            46.038703,
+            46.039078,
+            46.040171,
+            46.042424,
+            46.043892,
+            46.048023,
+            46.054645,
+            46.063045,
+            46.066857
+         ],
+         "lo":[
+            11.137968,
+            11.137673,
+            11.138460,
+            11.140378,
+            11.141608,
+            11.140969,
+            11.140526,
+            11.142985,
+            11.148740,
+            11.150149,
+            11.150428
+         ],
+      "p": [
+        {
+          "l": "en-US",
+          "t": "Which mode of transport you used?"
+        },
+        {
+          "l": "it-IT",
+          "t": "Come ci sei arrivato"
+        }
+      ]
+    },
+    "a": [
+      {
+        "id": 1,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Train"
+          },
+          {
+            "l": "it-IT",
+            "t": "Treno"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Bus"
+          },
+          {
+            "l": "it-IT",
+            "t": "Bus"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Cableway"
+          },
+          {
+            "l": "it-IT",
+            "t": "Funivia"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Private bycicle"
+          },
+          {
+            "l": "it-IT",
+            "t": "Bicicletta privata"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Electric private bycicle"
+          },
+          {
+            "l": "it-IT",
+            "t": "Bicicletta privata elettrica"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Bike sharing bycicle"
+          },
+          {
+            "l": "it-IT",
+            "t": "Bicicletta bike sharing"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Electric bike sharing bycicle"
+          },
+          {
+            "l": "it-IT",
+            "t": "Bicicletta bike sharing elettrica"
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Car"
+          },
+          {
+            "l": "it-IT",
+            "t": "Automobile"
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Motorcycle"
+          },
+          {
+            "l": "it-IT",
+            "t": "Moto"
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Scooter"
+          },
+          {
+            "l": "it-IT",
+            "t": "Scooter"
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "c": [
+          ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "By foot"
+          },
+          {
+            "l": "it-IT",
+            "t": "A piedi"
+          }
+        ]
+      }
+    ]
+  } ,
+  {
+    "q": {
+      "id": 3,
+      "c": [
+       {
+        "q": 1 ,
+        "a": 1
+       }
+      ],
+      "t": "l",
+      "l": {
+        "lat": 46.0661043,
+        "lon": 11.121961
+      },
+      "p": [
+        {
+          "t": "At {trip_data[stop_address]}, you:",
+          "l": "en-US"
+        },
+        {
+          "t": "In {trip_data[stop_address]}:",
+          "l": "it-IT"
+        }
+      ]
+    },
+    "a": [
+      {
+        "id": 1,
+        "c_id": -1,
+        "p": [
+          {
+            "t": "Reached your destination",
+            "l": "en-US"
+          },
+          {
+            "t": "Hai raggiunto la tua destinazione",
+            "l": "it-IT"
+          }
+        ],
+        "c": [
+          
+        ]
+      },
+      {
+        "id": 2,
+        "c_id": -1,
+        "p": [
+          {
+            "t": "Briefly stopped to change transportation mode",
+            "l": "en-US"
+          },
+          {
+            "t": "Ti sei fermato/a per cambiare mezzo di trasporto",
+            "l": "it-IT"
+          }
+        ],
+        "c": [
+          
+        ]
+      },
+      {
+        "id": 3,
+        "c_id": -1,
+        "p": [
+          {
+            "t": "I don't remember",
+            "l": "en-US"
+          },
+          {
+            "t": "Non mi ricordo",
+            "l": "it-IT"
+          }
+        ],
+        "c": [
+          
+        ]
+      }
+
+    ]
+  },
+  {
+    "q": {
+      "id": 4,
+      "c": [
+       {
+        "q": 1 ,
+        "a": 2
+       }
+      ],
+      "t":"ms",
+         "la":[
+            46.041332,
+            46.039488,
+            46.038703,
+            46.039078,
+            46.040171,
+            46.042424,
+            46.043892,
+            46.048023,
+            46.054645,
+            46.063045,
+            46.066857
+         ],
+         "lo":[
+            11.137968,
+            11.137673,
+            11.138460,
+            11.140378,
+            11.141608,
+            11.140969,
+            11.140526,
+            11.142985,
+            11.148740,
+            11.150149,
+            11.150428
+         ],
+      "p": [
+        {
+          "t": "Oh, we got it wrong... what is the problem?",
+          "l": "en-US"
+        },
+        {
+          "t": "Ops, abbiamo sbagliato. Qual è il problema di questo spostamento?",
+          "l": "it-IT"
+        }
+      ]
+    },
+    "a": [
+      {
+        "id": 1,
+        "c_id": -1,
+        "p": [
+          {
+            "t": "The starting point is wrong",
+            "l": "en-US"
+          },
+          {
+            "t": "Il punto di partenza è sbagliato",
+            "l": "it-IT"
+          }
+        ],
+        "c": [
+          
+        ]
+      },
+      {
+        "id": 2,
+        "c_id": -1,
+        "p": [
+          {
+            "t": "The destination point is wrong",
+            "l": "en-US"
+          },
+          {
+            "t": "Il punto di arrivo è sbagliato",
+            "l": "it-IT"
+          }
+        ],
+        "c": [
+          
+        ]
+      },
+      {
+        "id": 3,
+        "c_id": -1,
+        "p": [
+          {
+            "t": "I was at the starting point but did not make a trip at that time",
+            "l": "en-US"
+          },
+          {
+            "t": "Ero al punto di partenza ma non ho effettuato uno spostamento a quell'ora",
+            "l": "it-IT"
+          }
+        ],
+        "c": [
+          
+        ]
+      },
+
+      {
+        "id": 4,
+        "c_id": -1,
+        "p": [
+          {
+            "t": "I was at the destination point but did not make a trip at that time",
+            "l": "en-US"
+          },
+          {
+            "t": "Ero al punto di arrivo ma non ho effettuato uno spostamento a quell'ora ",
+            "l": "it-IT"
+          }
+        ],
+        "c": [
+          
+        ]
+      }
+    ]
+  }
+
+]

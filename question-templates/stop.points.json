@@ -1,0 +1,503 @@
+[
+  {
+    "q": {
+      "id": 1,
+      "c": [
+        
+      ],
+      "t": "l",
+      "l": {
+        "lat": 46.0661043,
+        "lon": 11.121961
+      },
+      "p": [
+        {
+          "t": "We detected that on {p[datetime]}, you stopped near the point on the map below, close to {p[address]}. Did you:",
+          "l": "en-US"
+        },
+        {
+          "t": "Abbiamo notato che il {p[datetime]} ti sei fermato vicino a {p[address]}. Per quale ragione?",
+          "l": "it-IT"
+        }
+      ]
+    },
+    "a": [
+      {
+        "id": 1,
+        "c_id": -1,
+        "p": [
+          {
+            "t": "Reached your destination",
+            "l": "en-US"
+          },
+          {
+            "t": "Ho raggiunto la mia destinazione",
+            "l": "it-IT"
+          }
+        ],
+        "c": [
+          
+        ]
+      },
+      {
+        "id": 2,
+        "c_id": -1,
+        "p": [
+          {
+            "t": "Briefly stopped to change transportation mode",
+            "l": "en-US"
+          },
+          {
+            "t": "Mi sono fermato solo per cambiare il mezzo di trasporto",
+            "l": "it-IT"
+          }
+        ],
+        "c": [
+          
+        ]
+      },
+      {
+        "id": 3,
+        "c_id": -1,
+        "p": [
+          {
+            "t": "You were not in that area at that time, or you did not stop",
+            "l": "en-US"
+          },
+          {
+            "t": "Non mi trovavo in quella zona in quel momento.",
+            "l": "it-IT"
+          }
+        ],
+        "c": [
+          
+        ]
+      }
+    ]
+  },
+  {
+    "q": {
+      "id": 2,
+      "c": [
+        {
+          "q": 1,
+          "a": 1
+        }
+      ],
+      "t": "t",
+      "at": "s",
+      "p": [
+        {
+          "l": "en-US",
+          "t": "Which mode of transport you used to get there?"
+        },
+        {
+          "l": "it-IT",
+          "t": "Come ci sei arrivato?"
+        }
+      ]
+    },
+    "a": [
+      {
+        "id": 1,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Train"
+          },
+          {
+            "l": "it-IT",
+            "t": "Treno"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Bus"
+          },
+          {
+            "l": "it-IT",
+            "t": "Bus"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Cableway"
+          },
+          {
+            "l": "it-IT",
+            "t": "Funivia"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Private bycicle"
+          },
+          {
+            "l": "it-IT",
+            "t": "Bicicletta privata"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Electric private bycicle"
+          },
+          {
+            "l": "it-IT",
+            "t": "Bicicletta privata elettrica"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Bike sharing bycicle"
+          },
+          {
+            "l": "it-IT",
+            "t": "Bicicletta bike sharing"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Electric bike sharing bycicle"
+          },
+          {
+            "l": "it-IT",
+            "t": "Bicicletta bike sharing elettrica"
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Car"
+          },
+          {
+            "l": "it-IT",
+            "t": "Automobile"
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Motorcycle"
+          },
+          {
+            "l": "it-IT",
+            "t": "Moto"
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Scooter"
+          },
+          {
+            "l": "it-IT",
+            "t": "Scooter"
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "c": [
+          ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "By foot"
+          },
+          {
+            "l": "it-IT",
+            "t": "A piedi"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "q": {
+      "id": 3,
+      "c": [
+        {
+          "q": 1,
+          "a": 2
+        }
+      ],
+      "t": "t",
+      "at": "s",
+      "p": [
+        {
+          "l": "en-US",
+          "t": "To which mode of transport you changed"
+        },
+        {
+          "l": "it-IT",
+          "t": "Che mezzo di transporto hai preso successivamente?"
+        }
+      ]
+    },
+    "a": [
+      {
+        "id": 1,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Train"
+          },
+          {
+            "l": "it-IT",
+            "t": "Treno"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Bus"
+          },
+          {
+            "l": "it-IT",
+            "t": "Bus"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Cableway"
+          },
+          {
+            "l": "it-IT",
+            "t": "Funivia"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Private bycicle"
+          },
+          {
+            "l": "it-IT",
+            "t": "Bicicletta privata"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Electric private bycicle"
+          },
+          {
+            "l": "it-IT",
+            "t": "Bicicletta privata elettrica"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Bike sharing bycicle"
+          },
+          {
+            "l": "it-IT",
+            "t": "Bicicletta bike sharing"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Electric bike sharing bycicle"
+          },
+          {
+            "l": "it-IT",
+            "t": "Bicicletta bike sharing elettrica"
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Car"
+          },
+          {
+            "l": "it-IT",
+            "t": "Automobile"
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Motorcycle"
+          },
+          {
+            "l": "it-IT",
+            "t": "Moto"
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "Scooter"
+          },
+          {
+            "l": "it-IT",
+            "t": "Scooter"
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "By foot"
+          },
+          {
+            "l": "it-IT",
+            "t": "A piedi"
+          }
+        ]
+      }
+    ]
+  }
+]
+
+
