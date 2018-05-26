@@ -15,8 +15,11 @@ def instantiate_question(trip,q_type,q_template="question-templates/stop.points.
             q_json = json.load(template_f)
         q_json = set_stop_coordinates(q_json,trip)
         q_json = set_stop_question(q_json,trip)
-    elif(q_type == "Trip"):
+    elif(q_type == "SEGMENT"):
         q_json = set_segment_template(trip)
+    elif(q_type == "POINTS"):
+        q_json = set_points_template(trip)
+
     question = dm.Question.create(
         citizen_id = trip.citizen_id,
         trip_id = trip,
@@ -27,14 +30,68 @@ def instantiate_question(trip,q_type,q_template="question-templates/stop.points.
 
 def set_segment_template(trip):
     #TODO: unwire this
-    with open("question-templates/segment.json") as template_f:
+    with open("question-templates/segment.allmap.json") as template_f:
         q_json = json.load(template_f)
-    # Set stop address
-    dt = trip.start_timestamp.strftime("%d-%m at %H:%M")
-    q_json[0]['q']['p'][0]['t'] = q_json[0]['q']['p'][0]['t'].format(start_address=trip.start_address, start_datetime = dt,stop_address = trip.stop_address)
-    q_json[0]['q']['p'][1]['t'] = q_json[0]['q']['p'][1]['t'].format(start_address=trip.start_address, start_datetime = dt,stop_address = trip.stop_address) 
+    start_date =  str(trip.start_timestamp.day) + '/' +  str(trip.start_timestamp.month)
+    start_time = str(trip.start_timestamp.hour) + ':' + str(trip.start_timestamp.minute)
+    stop_date =  str(trip.stop_timestamp.day) + '/' +  str(trip.stop_timestamp.month)
+    stop_time = str(trip.stop_timestamp.hour) + ':' + str(trip.stop_timestamp.minute)
+
+    trip_data = {
+            'start_date': start_date ,
+            'start_time': start_time ,
+            'start_address': trip.start_address ,
+            'stop_date': stop_date ,
+            'stop_time': stop_time ,
+            'stop_address': trip.stop_address ,
+            }
+
+    # First question    
+    q_json[0]['q']['p'][0]['t'] = q_json[0]['q']['p'][0]['t'].format(trip_data=trip_data)
+    q_json[0]['q']['p'][1]['t'] = q_json[0]['q']['p'][1]['t'].format(trip_data=trip_data) 
+    #TODO: set Path
+
+    # Second question does not require instantiation (transport mode)
+
+    # Third question    
+    q_json[2]['q']['p'][0]['t'] = q_json[2]['q']['p'][0]['t'].format(trip_data=trip_data)
+    q_json[2]['q']['p'][1]['t'] = q_json[2]['q']['p'][1]['t'].format(trip_data=trip_data) 
     return q_json
 
+def set_points_template(trip):
+    with open("question-templates/start.stop.points.json") as template_f:
+        q_json = json.load(template_f)
+    start_date =  str(trip.start_timestamp.day) + '/' +  str(trip.start_timestamp.month)
+    start_time = str(trip.start_timestamp.hour) + ':' + str(trip.start_timestamp.minute)
+    stop_date =  str(trip.stop_timestamp.day) + '/' +  str(trip.stop_timestamp.month)
+    stop_time = str(trip.stop_timestamp.hour) + ':' + str(trip.stop_timestamp.minute)
+
+    trip_data = {
+            'start_date': start_date ,
+            'start_time': start_time ,
+            'start_address': trip.start_address ,
+            'stop_date': stop_date ,
+            'stop_time': stop_time ,
+            'stop_address': trip.stop_address ,
+            }
+
+    # First question    
+    q_json[0]['q']['p'][0]['t'] = q_json[0]['q']['p'][0]['t'].format(trip_data=trip_data)
+    q_json[0]['q']['p'][1]['t'] = q_json[0]['q']['p'][1]['t'].format(trip_data=trip_data) 
+    #TODO: set point
+    point = json.loads(trip.start_coordinate)
+    q_json[0]['q']['l']['lat'] = point[0]
+    q_json[0]['q']['l']['lon'] = point[1]
+
+    # Second question 
+    q_json[1]['q']['p'][0]['t'] = q_json[1]['q']['p'][0]['t'].format(trip_data=trip_data)
+    q_json[1]['q']['p'][1]['t'] = q_json[1]['q']['p'][1]['t'].format(trip_data=trip_data) 
+    point = json.loads(trip.stop_coordinate)
+    q_json[1]['q']['l']['lat'] = point[0]
+    q_json[1]['q']['l']['lon'] = point[1]
+
+    # Third question does not require instantiation    
+    return q_json
 
 def set_stop_coordinates(q_json,trip):
     point = json.loads(trip.stop_coordinate)
@@ -86,11 +143,14 @@ def main():
     config.read('question-config.ini')
     
     test_trip = dm.Trip.get(trip_id=1)
-    test_question = instantiate_question(test_trip,"Trip")
-    #print(test_question)
+    test_question = instantiate_question(test_trip,"SEGMENT")
+    print(test_question.question_json)
+
+    test_question = instantiate_question(test_trip,"POINTS")
+    print(test_question.question_json)
 
     #test_question = dm.Question.get(question_id=1)
-    print(ask_question(test_question,config['ilog']))
+    #print(ask_question(test_question,config['ilog']))
 
     #q = ask_question(question,config['ilog'])
 
