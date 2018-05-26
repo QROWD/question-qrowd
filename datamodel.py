@@ -12,7 +12,7 @@ class Citizen(Model):
 
 class Trip(Model):
     trip_id = IntegerField(primary_key=True)
-    citizen_id = ForeignKeyField(Citizen, backref = 'citizens')
+    citizen_id = ForeignKeyField(Citizen, backref = 'trips')
     start_coordinate = CharField()
     start_address = CharField()
     stop_coordinate = CharField()
@@ -44,7 +44,7 @@ class Stop_answer(Model):
 
 class Question(Model):
     question_id = AutoField(primary_key=True)
-    citizen_id = ForeignKeyField(Citizen, backref = 'citizens')
+    citizen_id = ForeignKeyField(Citizen, backref = 'questions')
     task_id = CharField()
     trip_id = ForeignKeyField(Trip, backref='questions')
     #All the JSON
