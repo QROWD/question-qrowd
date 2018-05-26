@@ -1,6 +1,7 @@
 import json
 import configparser
 import requests
+from datetime import datetime
 import datamodel as dm
 import question_gen as qg
 
@@ -22,24 +23,121 @@ def ask_question(question,config):
     query.execute()
     return r
 
-def main():
-    config = configparser.ConfigParser()
-    config.read('question-config.ini')
-    #For each citizen
+def check_data_for_date(config,date=datetime.today().date()):
+    #TODO: support array of dates
+    print(date)
+    headers = {
+            'cache-control' : 'no-cache' ,
+            'email': config['serverlogin'] , 
+            'password': config['serverpassword'] ,
+            'dates': '{ "dates": ["' + date.strftime('%Y%m%d') + '"]}' 
+            }
+    r = requests.get(config['dataURL']+'/checkuserdata', headers=headers)
+    return r.json()
+
+def location_average(daily_data,hours=24):
+    """Receives daily data in format returned by iLog
+    returns average location use
+    """
+    location = [record['presence'] for record in daily_data if record['tablename'] == 'locationeventpertime']
+    location_array = location[0]
+    return sum(location_array)/hours
+
+def is_collected_location_enough(daily_data,hours=24):
+    average = location_average(daily_data,hours)
+    return average > 1
+
+def is_collected_accelerometer_enough(daily_data,hours=24):
+    average = accelerometer_average(daily_data,hours)
+    return average > 1
+
+def accelerometer_average(daily_data,hours=24):
+    """Receives daily data in format returned by iLog
+    returns average location use
+    """
+    accelerometer = [record['presence'] for record in daily_data if record['tablename'] == 'accelerometerevent']
+    accelerometer_array = accelerometer[0]
+    return sum(accelerometer_array)/hours
+
+def send_machine_failure_message():
+    print("TBI")
+
+def send_accelerometer_failure_message():
+    print("TBI")
+
+def send_location_failure_message():
+    print("TBI")
+
+def send_whole_failure_message():
+    print("TBI")
+
+def send_warning_message(citizen,config):
+    """ When no new trips have been detected, send a warning message
+        Either there was a machine issue or there was a collection issue
+    """
+    with open("question-templates/no.data.message.json") as template_f:
+        m_json = json.load(template_f)
+    
+    headers = {
+            'cache-control' : 'no-cache' ,
+            'email': config['serverlogin'] , 
+            'password': config['serverpassword'] ,
+            't_title': 'Test message' , 
+            't_until': '86400' , 
+            'content': json.dumps(m_json) , 
+            'usersalt': citizen.citizen_id
+            }
+    r = requests.get(config['serverURL']+'/user/newmessage',headers=headers).json()
+    return r
+
+def process_questions(config):
+
+    daily_log_stats = check_data_for_date(config['iLog'])
+
     for citizen in dm.Citizen.select():
         print(citizen.citizen_id)
+        citizen_data = [data['days'][0]['tables'] for data in daily_log_stats if data['userid'] == citizen.citizen_id ]
+        citizen_data = citizen_data[0]
         # Trips for which no question has been asked
         # TODO: Might be cases where a question was instantiated but not yet asked
         new_trips = [trip for trip in citizen.trips if len(trip.questions) == 0]
+        if len(new_trips) == 0 :
+            print ("No new trips for citizen "+ str(citizen.citizen_id))
+            print ("Computing collected data average...")
+            # TODO: This applies to continuous mode
+            # TODO: this value of 10 is hardcoded from the definition of the reward
+            #Machine failure
+            if (is_collected_accelerometer_enough(citizen_data,10) and
+                    is_collected_location_enough(citizen_data,10)):
+                print ("Enough collection, sending machine failure message")
+                send_machine_failure_message()
+            #Something happened with location
+            elif (is_collected_accelerometer_enough(citizen_data,10) and
+                    not is_collected_location_enough(citizen_data,10)):
+                print ("Location failure, sending warning message")
+                send_location_failure_message()
+            #Something happened with accelerometer
+            elif (not is_collected_accelerometer_enough(citizen_data,10) and
+                      is_collected_location_enough(citizen_data,10)):
+                print ("Accelerometer failure, sending warning message")
+                send_accelerometer_failure_message()
+            #whole collection failed
+            else:
+                print ("Collection failure, sending warning message")
+                send_whole_failure_message()
+
+
+            #send_warning_message(citizen,config['iLog'])
+
         for trip in new_trips:
             #TODO: Change to proper logging
-            print ("Asking question to citizen "+ str(trip.citizen_id))
+            print ("Asking question to citizen "+ str(citizen.citizen_id))
             print ("referring trip " + str(trip.trip_id))
             print ("question type "+ citizen.question_preference)
             if citizen.question_preference == 'SEGMENT':
                 question = qg.instantiate_question(trip,'SEGMENT')
                 response = ask_question(question,config['iLog'])
-                print ("Response: " + response)
+                print ("Response: " + response.text)
             elif citizen.question_preference == 'POINTS':
                 question = qg.instantiate_question(trip,'POINTS')
                 response = ask_question(question,config['iLog'])
@@ -49,17 +147,13 @@ def main():
                 #TODO: Change to exception
                 print ("ERROR: Unknown question type")
 
-        #for trip in citizen.trips.where(dm.Trip.stop_address == 'Via Berlin'):
-        #    print(trip.stop_address)
-        #new_trips = [trip for dm.Trip.select().where()]
-    # if no new trips detected
-    # If data issues:
-        # Send data problem message
-    # If machine issue
-        # Send explicative message
-    #for new trip detected
-        # For each new trip 
-        # Ask question regarding trip, depending on type
+def main():
+    config = configparser.ConfigParser()
+    config.read('question-config.ini')
+    process_questions(config)
+    #r = check_data_for_dates(config['iLog'],datetime(2018,4,12),datetime(2018,4,12))
+    #r = check_data_for_date(config['iLog'])
+    #print(r.text)
      
 
 if __name__ == "__main__": main()
