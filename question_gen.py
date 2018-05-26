@@ -105,22 +105,6 @@ def set_stop_question(q_json,trip):
     q_json[0]['q']['p'][1]['t'] = q_json[0]['q']['p'][1]['t'].format(stop_time = dt,stop_address = trip.stop_address)
     return q_json
 
-def ask_question(question,config):
-    headers = {
-            'cache-control' : 'no-cache' ,
-            'content' : json.dumps(question.question_json) ,
-            'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' ,
-            'email': config['serverlogin'] , 
-            'password': config['serverpassword'] ,
-            'postman-token': config['postman-token'] , 
-            't_title': 'Task' ,
-            't_until': '864000' ,
-            'usersalt': question.citizen_id 
-            }
-    r = requests.get(config['serverURL']+'/user/newtask',headers=headers).json()
-    query = dm.Question.update(task_id = r["taskid"])
-    query.execute()
-    return r
 
 def get_answer(question,config):
     headers = {
