@@ -58,6 +58,16 @@ class Question(Model):
     class Meta:
         database = db
 
+class Message(Model):
+    message_id = AutoField(primary_key=True)
+    citizen_id = ForeignKeyField(Citizen, backref = 'messages')
+    message_json = TextField()
+    message_type = CharField() #[COLLECTFAIL,MACHINEFAIL]
+    answer = CharField(null=True) # [NOTUSE,NOTCONNECT,ERROR,NOTRIP,TRIPMADE]
+
+    class Meta:
+        database = db
+
 class Transport_mode(Model):
     transport_mode_id = IntegerField(primary_key=True)
     label_en = CharField()
@@ -68,7 +78,7 @@ class Transport_mode(Model):
 
 def main():
     db.connect()
-    db.create_tables([Citizen,Trip,Question,Stop_answer,Transport_mode])
+    db.create_tables([Citizen,Trip,Question,Message,Stop_answer,Transport_mode])
     db.close()
 
 
