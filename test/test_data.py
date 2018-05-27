@@ -29,7 +29,9 @@ def insert_test_trip(test_citizen):
     test_trip = dm.Trip(citizen_id=test_citizen,start_coordinate='[46.041332, 11.137968]',
             start_address = 'Via Southampton', stop_coordinate = '[46.066857,11.150428]',
             stop_address = 'Via Leipzig',start_timestamp = datetime.strptime('2018-04-12 12:11:50','%Y-%m-%d %H:%M:%S'),
-            stop_timestamp=datetime.strptime('2018-04-12 12:21:50','%Y-%m-%d %H:%M:%S'))
+            stop_timestamp=datetime.strptime('2018-04-12 12:21:50','%Y-%m-%d %H:%M:%S'),
+            path = "[ [46.041332, 11.137968], [46.039488, 11.137673], [46.038703, 11.138460], [46.039078, 11.140378], [46.040171, 11.141608], [46.042424, 11.140969], [46.043892, 11.140526], [46.048023, 11.142985], [46.054645, 11.148740], [46.063045, 11.150149], [46.066857, 11.150428] ]")
+ 
     test_trip.save()
 
 def main():

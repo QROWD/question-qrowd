@@ -49,13 +49,21 @@ def set_segment_template(trip,config):
     # First question    
     q_json[0]['q']['p'][0]['t'] = q_json[0]['q']['p'][0]['t'].format(trip_data=trip_data)
     q_json[0]['q']['p'][1]['t'] = q_json[0]['q']['p'][1]['t'].format(trip_data=trip_data) 
-    #TODO: set Path
+    #TODO: defensive code in case of null path
+    json_path = json.loads(trip.path)
+    lats = [point[0] for point in json_path]
+    lons = [point[1] for point in json_path]
+
+    q_json[0]['q']['la'] = lats
+    q_json[0]['q']['lo'] = lons
+
 
     # Second question does not require instantiation (transport mode)
 
     # Third question    
     q_json[2]['q']['p'][0]['t'] = q_json[2]['q']['p'][0]['t'].format(trip_data=trip_data)
     q_json[2]['q']['p'][1]['t'] = q_json[2]['q']['p'][1]['t'].format(trip_data=trip_data) 
+
     return q_json
 
 def set_points_template(trip,config):
