@@ -3,6 +3,9 @@ import configparser
 from datetime import datetime
 
 def clear_data():
+    del_messages = dm.Message.delete()
+    del_messages.execute()
+
     del_questions = dm.Question.delete()
     del_questions.execute()
 
@@ -12,10 +15,11 @@ def clear_data():
     del_citizens = dm.Citizen.delete()
     del_citizens.execute()
 
-def insert_test_citizen(config):
+
+def insert_test_citizen(config,collection_mode='CONTINUOUS',question_preference='SEGMENT'):
     """Test citizen comes from config. It needs to be linked to a test mobile phone
     """
-    test_citizen = dm.Citizen(citizen_id=config['test']['test_citizen_id'],collection_mode='CONTINUOUS',question_preference='SEGMENT')
+    test_citizen = dm.Citizen(citizen_id=config['test']['test_citizen_id'],collection_mode=collection_mode,question_preference=question_preference)
     test_citizen.save(force_insert=True)
     return test_citizen
 

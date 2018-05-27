@@ -4,7 +4,7 @@ import json
 import requests
 from datetime import datetime
 
-def instantiate_question(trip,q_type,q_template="question-templates/stop.points.json"):
+def instantiate_question(trip,q_type,config):
     """
     Take a trip and ask a question of q_type by instantiating a q_template
     Assumption: q_type and q_template match
@@ -16,9 +16,9 @@ def instantiate_question(trip,q_type,q_template="question-templates/stop.points.
         q_json = set_stop_coordinates(q_json,trip)
         q_json = set_stop_question(q_json,trip)
     elif(q_type == "SEGMENT"):
-        q_json = set_segment_template(trip)
+        q_json = set_segment_template(trip,config)
     elif(q_type == "POINTS"):
-        q_json = set_points_template(trip)
+        q_json = set_points_template(trip,config)
 
     question = dm.Question.create(
         citizen_id = trip.citizen_id,
@@ -28,9 +28,9 @@ def instantiate_question(trip,q_type,q_template="question-templates/stop.points.
         )
     return question
 
-def set_segment_template(trip):
+def set_segment_template(trip,config):
     #TODO: unwire this
-    with open("question-templates/segment.allmap.json") as template_f:
+    with open(config['templateDir']['questions']+"/segment.allmap.json") as template_f:
         q_json = json.load(template_f)
     start_date =  str(trip.start_timestamp.day) + '/' +  str(trip.start_timestamp.month)
     start_time = str(trip.start_timestamp.hour) + ':' + str(trip.start_timestamp.minute)
@@ -58,8 +58,8 @@ def set_segment_template(trip):
     q_json[2]['q']['p'][1]['t'] = q_json[2]['q']['p'][1]['t'].format(trip_data=trip_data) 
     return q_json
 
-def set_points_template(trip):
-    with open("question-templates/start.stop.points.json") as template_f:
+def set_points_template(trip,config):
+    with open(config['templateDir']['questions']+"start.stop.points.json") as template_f:
         q_json = json.load(template_f)
     start_date =  str(trip.start_timestamp.day) + '/' +  str(trip.start_timestamp.month)
     start_time = str(trip.start_timestamp.hour) + ':' + str(trip.start_timestamp.minute)
@@ -127,10 +127,10 @@ def main():
     config.read('question-config.ini')
     
     test_trip = dm.Trip.get(trip_id=1)
-    test_question = instantiate_question(test_trip,"SEGMENT")
+    test_question = instantiate_question(test_trip,"SEGMENT",config)
     print(test_question.question_json)
 
-    test_question = instantiate_question(test_trip,"POINTS")
+    test_question = instantiate_question(test_trip,"POINTS",config)
     print(test_question.question_json)
 
     #test_question = dm.Question.get(question_id=1)

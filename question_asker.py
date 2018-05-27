@@ -45,11 +45,11 @@ def location_average(daily_data,hours=24):
 
 def is_collected_location_enough(daily_data,hours=24):
     average = location_average(daily_data,hours)
-    return average > 1
+    return average >= 1
 
 def is_collected_accelerometer_enough(daily_data,hours=24):
     average = accelerometer_average(daily_data,hours)
-    return average > 1
+    return average >= 1
 
 def accelerometer_average(daily_data,hours=24):
     """Receives daily data in format returned by iLog
@@ -75,6 +75,8 @@ def send_message(citizen,message,config):
     """ When no new trips have been detected, send a warning message
         Either there was a machine issue or there was a collection issue
     """
+
+    """ Messages did not work as expected, so reverted this functionality to a task
     headers = {
             'cache-control' : 'no-cache' ,
             'email': config['serverlogin'] , 
@@ -86,53 +88,53 @@ def send_message(citizen,message,config):
             }
     r = requests.get(config['serverURL']+'/user/newmessage',headers=headers).json()
     return r
+    """ 
+    headers = {
+            'cache-control' : 'no-cache' ,
+            'content' : json.dumps(message.message_json) ,
+            'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' ,
+            'email': config['serverlogin'] , 
+            'password': config['serverpassword'] ,
+            'postman-token': config['postman-token'] , 
+            't_title': 'Task' ,
+            't_until': '864000' ,
+            'usersalt': citizen.citizen_id 
+     
+    }
+    r = requests.get(config['serverURL']+'/user/newtask',headers=headers).json()
+    return r
 
-def instantiate_message(citizen,citizen_data):
+
+def instantiate_message(citizen,citizen_data,config):
     #TODO: The value of hours 10 is wired from the collection
     message = None
     if (citizen.collection_mode == "CONTINUOUS"):
         # Enough location collected, machine failure or citizen did not move
         if (is_collected_location_enough(citizen_data,10)):
             print ("Enough collection, sending machine failure message")
-            with open("message-templates/machine.failure.message.json") as template_f:
+            with open(config['templateDir']['messages']+"/machine.failure.message.json") as template_f:
                 m_json = json.load(template_f)
-            message = dm.Message.create(
-                citizen_id = trip.citizen_id,
-                message_json = m_json,
-                message_type = 'MACHINEFAILURE',
-                )
+            message = dm.Message.create( citizen_id = citizen.citizen_id, message_json = m_json, message_type = 'MACHINEFAILURE')
         #Something happened with location
         else:
             print ("Location failure, sending collection failure message")
-            with open("message-templates/collection.failure.message.json") as template_f:
+            with open(config['templateDir']['messages']+"collection.failure.message.json") as template_f:
                 m_json = json.load(template_f)
-            message = dm.Message.create(
-                citizen_id = trip.citizen_id,
-                message_json = m_json,
-                message_type = 'COLLECTIONFAILURE',
-                )
+            message = dm.Message.create(citizen_id = citizen.citizen_id, message_json = m_json, message_type = 'COLLECTIONFAILURE')
     elif (citizen.collection_mode == "ON-OFF"):
         #TODO: The value of 2 is wired from the reward
         if (is_collected_location_enough(citizen_data,2)):
             print ("Enough collection, sending machine failure message")
-            with open("message-templates/machine.failure.message.json") as template_f:
+            with open(config['templateDir']['messages']+"machine.failure.message.json") as template_f:
                 m_json = json.load(template_f)
-            message = dm.Message.create(
-                citizen_id = trip.citizen_id,
-                message_json = m_json,
-                message_type = 'MACHINEFAILURE',
-                )
+            message = dm.Message.create(citizen_id = citizen.citizen_id, message_json = m_json, message_type = 'MACHINEFAILURE')
         #Something happened with location
         else:
             print ("Location collection failure, sending collection failure")
-            with open("message-templates/onoff.failure.message.json") as template_f:
+            with open(config['templateDir']['messages']+"onoff.failure.message.json") as template_f:
                 m_json = json.load(template_f)
-            message = dm.Message.create(
-                citizen_id = trip.citizen_id,
-                message_json = m_json,
-                message_type = 'COLLECTIONFAILURE',
-                )
-        return message
+            message = dm.Message.create( citizen_id = citizen.citizen_id, message_json = m_json, message_type = 'COLLECTIONFAILURE')
+    return message
 
 def process_questions(config):
 
@@ -154,7 +156,7 @@ def process_questions(config):
             print ("Instantiating relevant message...")
             message = instantiate_message(citizen,citizen_data)
             print ("Sending message...")
-            send_message(citizen,message,config['iLog']
+            send_message(citizen,message,config['iLog'])
 
         for trip in new_trips:
             #TODO: Change to proper logging
@@ -162,13 +164,13 @@ def process_questions(config):
             print ("referring trip " + str(trip.trip_id))
             print ("question type "+ citizen.question_preference)
             if citizen.question_preference == 'SEGMENT':
-                question = qg.instantiate_question(trip,'SEGMENT')
+                question = qg.instantiate_question(trip,'SEGMENT',config)
                 response = ask_question(question,config['iLog'])
-                print ("Response: " + response.text)
+                print ("Response: " + str(response))
             elif citizen.question_preference == 'POINTS':
-                question = qg.instantiate_question(trip,'POINTS')
+                question = qg.instantiate_question(trip,'POINTS',config)
                 response = ask_question(question,config['iLog'])
-                print ("Response: " + response.text)
+                print ("Response: " + str(response))
                 #TODO: Add exception to delete instantiated question if server issue 
             else:
                 #TODO: Change to exception
