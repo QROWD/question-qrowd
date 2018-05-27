@@ -1,6 +1,6 @@
 from peewee import *
 
-db = SqliteDatabase('test2.sqlite')
+db = SqliteDatabase(None)
 
 class Citizen(Model):
     citizen_id = CharField(primary_key=True)
@@ -76,7 +76,14 @@ class Transport_mode(Model):
     class Meta:
         database = db
 
+def initialize(dbname):
+    db.init(dbname)
+    db.connect()
+    db.create_tables([Citizen,Trip,Question,Message,Stop_answer,Transport_mode])
+    db.close()
+
 def main():
+    db.init('pilot2.sqlite')
     db.connect()
     db.create_tables([Citizen,Trip,Question,Message,Stop_answer,Transport_mode])
     db.close()
