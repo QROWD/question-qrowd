@@ -10,6 +10,12 @@ class Citizen(Model):
     class Meta:
         database = db
 
+class MultiModalTrip(Model):
+    multimodaltrip_id = IntegerField(primary_key=True)
+
+    class Meta:
+        database = db
+
 class Trip(Model):
     trip_id = IntegerField(primary_key=True)
     citizen_id = ForeignKeyField(Citizen, backref = 'trips')
@@ -20,11 +26,14 @@ class Trip(Model):
     start_timestamp = DateTimeField()
     stop_timestamp = DateTimeField()
     transportation_mode = CharField(null=True)
+    segment_confidence = FloatField(null=True)
+    transportation_confidence = FloatField(null=True)
     path = TextField(null=True)
-    multimodal_trip_id = IntegerField(null=True)
+    multimodal_trip_id = ForeignKeyField(MultiModalTrip,backref= 'trips', null=True)
 
     class Meta:
         database = db
+
 
 class Stop_answer(Model):
     stop_answer_id = IntegerField(primary_key=True)
