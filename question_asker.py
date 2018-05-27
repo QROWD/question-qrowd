@@ -71,27 +71,73 @@ def send_location_failure_message():
 def send_whole_failure_message():
     print("TBI")
 
-def send_warning_message(citizen,config):
+def send_message(citizen,message,config):
     """ When no new trips have been detected, send a warning message
         Either there was a machine issue or there was a collection issue
     """
-    with open("question-templates/no.data.message.json") as template_f:
-        m_json = json.load(template_f)
-    
     headers = {
             'cache-control' : 'no-cache' ,
             'email': config['serverlogin'] , 
             'password': config['serverpassword'] ,
             't_title': 'Test message' , 
             't_until': '86400' , 
-            'content': json.dumps(m_json) , 
+            'content': json.dumps(message.message_json) , 
             'usersalt': citizen.citizen_id
             }
     r = requests.get(config['serverURL']+'/user/newmessage',headers=headers).json()
     return r
 
+def instantiate_message(citizen,citizen_data):
+    #TODO: The value of hours 10 is wired from the collection
+    message = None
+    if (citizen.collection_mode == "CONTINUOUS"):
+        # Enough location collected, machine failure or citizen did not move
+        if (is_collected_location_enough(citizen_data,10)):
+            print ("Enough collection, sending machine failure message")
+            with open("message-templates/machine.failure.message.json") as template_f:
+                m_json = json.load(template_f)
+            message = dm.Message.create(
+                citizen_id = trip.citizen_id,
+                message_json = m_json,
+                message_type = 'MACHINEFAILURE',
+                )
+        #Something happened with location
+        else:
+            print ("Location failure, sending collection failure message")
+            with open("message-templates/collection.failure.message.json") as template_f:
+                m_json = json.load(template_f)
+            message = dm.Message.create(
+                citizen_id = trip.citizen_id,
+                message_json = m_json,
+                message_type = 'COLLECTIONFAILURE',
+                )
+    elif (citizen.collection_mode == "ON-OFF"):
+        #TODO: The value of 2 is wired from the reward
+        if (is_collected_location_enough(citizen_data,2)):
+            print ("Enough collection, sending machine failure message")
+            with open("message-templates/machine.failure.message.json") as template_f:
+                m_json = json.load(template_f)
+            message = dm.Message.create(
+                citizen_id = trip.citizen_id,
+                message_json = m_json,
+                message_type = 'MACHINEFAILURE',
+                )
+        #Something happened with location
+        else:
+            print ("Location collection failure, sending collection failure")
+            with open("message-templates/onoff.failure.message.json") as template_f:
+                m_json = json.load(template_f)
+            message = dm.Message.create(
+                citizen_id = trip.citizen_id,
+                message_json = m_json,
+                message_type = 'COLLECTIONFAILURE',
+                )
+        return message
+
 def process_questions(config):
 
+    print ("Processing questions...")
+    print ("Computing collected data average...")
     daily_log_stats = check_data_for_date(config['iLog'])
 
     for citizen in dm.Citizen.select():
@@ -101,33 +147,14 @@ def process_questions(config):
         # Trips for which no question has been asked
         # TODO: Might be cases where a question was instantiated but not yet asked
         new_trips = [trip for trip in citizen.trips if len(trip.questions) == 0]
+        
+        # If no trips detected, send warning message 
         if len(new_trips) == 0 :
             print ("No new trips for citizen "+ str(citizen.citizen_id))
-            print ("Computing collected data average...")
-            # TODO: This applies to continuous mode
-            # TODO: this value of 10 is hardcoded from the definition of the reward
-            #Machine failure
-            if (is_collected_accelerometer_enough(citizen_data,10) and
-                    is_collected_location_enough(citizen_data,10)):
-                print ("Enough collection, sending machine failure message")
-                send_machine_failure_message()
-            #Something happened with location
-            elif (is_collected_accelerometer_enough(citizen_data,10) and
-                    not is_collected_location_enough(citizen_data,10)):
-                print ("Location failure, sending warning message")
-                send_location_failure_message()
-            #Something happened with accelerometer
-            elif (not is_collected_accelerometer_enough(citizen_data,10) and
-                      is_collected_location_enough(citizen_data,10)):
-                print ("Accelerometer failure, sending warning message")
-                send_accelerometer_failure_message()
-            #whole collection failed
-            else:
-                print ("Collection failure, sending warning message")
-                send_whole_failure_message()
-
-
-            #send_warning_message(citizen,config['iLog'])
+            print ("Instantiating relevant message...")
+            message = instantiate_message(citizen,citizen_data)
+            print ("Sending message...")
+            send_message(citizen,message,config['iLog']
 
         for trip in new_trips:
             #TODO: Change to proper logging

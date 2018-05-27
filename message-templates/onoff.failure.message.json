@@ -1,0 +1,203 @@
+[
+   {
+    "q": {
+      "id": 1,
+      "c": [
+      ],
+      "t": "t",
+      "at": "s",
+      "p": [
+        {
+          "l": "en-US", 
+          "t": "Yikes!, it seems we did not get any trip from you today. What it might be?"
+        },
+        {
+          "l": "it-IT",
+          "t": "Yikes!, it seems we did not get any trip from you today. What it might be?"
+        }
+      ]
+    },
+    "a": [
+      {
+        "id": 1,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "I did not use iLog today"
+          },
+          {
+            "l": "it-IT",
+            "t": "I did not use iLog today"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "I could not connect to wifi to upload data"
+          },
+          {
+            "l": "it-IT",
+            "t": "I could not connect to wifi to upload data"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "I did upload data today, what could it be?"
+          },
+          {
+            "l": "it-IT",
+            "t": "I did upload data today, what could it be?"
+          }
+        ]
+      }
+    ]
+   },
+   {
+    "q": {
+      "id": 2,
+      "c": [
+        {
+          "q": 1,
+          "a": 1
+        }
+      ],
+      "t": "t",
+      "at": "s",
+      "p": [
+        {
+          "l": "en-US", 
+          "t": "That's alright. If you need further help, please get in touch to _______"
+        },
+        {
+          "l": "it-IT",
+          "t": "That's alright. If you need further help, please get in touch to _______"
+        }
+      ]
+    },
+    "a": [
+      {
+        "id": 1,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "OK"
+          },
+          {
+            "l": "it-IT",
+            "t": "OK"
+          }
+        ]
+      }
+    ]
+
+    },
+    {
+      "q": {
+      "id": 3,
+      "c": [
+        {
+          "q": 1,
+          "a": 2
+        }
+      ],
+      "t": "t",
+      "at": "s",
+      "p": [
+        {
+          "l": "en-US", 
+          "t": "That's alright. We will try again tomorrow, you might get questions about today's trips then"
+        },
+        {
+          "l": "it-IT",
+          "t": "That's alright. We will try again tomorrow, you might get questions about today's trips then"
+        }
+      ]
+    },
+    "a": [
+      {
+        "id": 1,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "OK"
+          },
+          {
+            "l": "it-IT",
+            "t": "OK"
+          }
+        ]
+      }
+    ]
+    },
+    {
+      "q": {
+      "id": 4,
+      "c": [
+        {
+          "q": 1,
+          "a": 3
+        }
+      ],
+      "t": "t",
+      "at": "s",
+      "p": [
+        {
+          "l": "en-US", 
+          "t": "Hum... it might be an issue with your phone. Check if your GPS is set to maximum accuracy. If you had it already, please get in touch through ______"
+        },
+        {
+          "l": "it-IT",
+          "t": "Hum... it might be an issue with your phone. Check if your GPS is set to maximum accuracy. If you had it already, please get in touch through _____"
+        }
+      ]
+    },
+    "a": [
+      {
+        "id": 1,
+        "c": [
+          
+        ],
+        "c_id": -1,
+        "p": [
+          {
+            "l": "en-US",
+            "t": "OK"
+          },
+          {
+            "l": "it-IT",
+            "t": "OK"
+          }
+        ]
+      }
+    ]
+    
+    }
+
+]
