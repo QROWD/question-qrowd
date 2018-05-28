@@ -33,9 +33,9 @@ def set_segment_template(trip,config):
     with open(config['templateDir']['questions']+"/segment.allmap.json") as template_f:
         q_json = json.load(template_f)
     start_date =  str(trip.start_timestamp.day) + '/' +  str(trip.start_timestamp.month)
-    start_time = str(trip.start_timestamp.hour) + ':' + str(trip.start_timestamp.minute)
+    start_time = str(trip.start_timestamp.hour) + ':' + trip.start_timestamp.strftime('%M')
     stop_date =  str(trip.stop_timestamp.day) + '/' +  str(trip.stop_timestamp.month)
-    stop_time = str(trip.stop_timestamp.hour) + ':' + str(trip.stop_timestamp.minute)
+    stop_time = str(trip.stop_timestamp.hour) + ':' + trip.start_timestamp.strftime('%M')
 
     trip_data = {
             'start_date': start_date ,
@@ -70,9 +70,9 @@ def set_points_template(trip,config):
     with open(config['templateDir']['questions']+"start.stop.points.json") as template_f:
         q_json = json.load(template_f)
     start_date =  str(trip.start_timestamp.day) + '/' +  str(trip.start_timestamp.month)
-    start_time = str(trip.start_timestamp.hour) + ':' + str(trip.start_timestamp.minute)
+    start_time = str(trip.start_timestamp.hour) + ':' + trip.start_timestamp.strftime('%M')
     stop_date =  str(trip.stop_timestamp.day) + '/' +  str(trip.stop_timestamp.month)
-    stop_time = str(trip.stop_timestamp.hour) + ':' + str(trip.stop_timestamp.minute)
+    stop_time = str(trip.stop_timestamp.hour) + ':' + trip.start_timestamp.strftime('%M')
 
     trip_data = {
             'start_date': start_date ,
