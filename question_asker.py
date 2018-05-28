@@ -19,8 +19,8 @@ def ask_question(question,config):
      
     }
     r = requests.get(config['serverURL']+'/user/newtask',headers=headers).json()
-    query = dm.Question.update(task_id = r["taskid"])
-    query.execute()
+    question.task_id = r['taskid']
+    question.save()
     return r
 
 def check_data_for_date(config,date=datetime.today().date()):
@@ -102,6 +102,8 @@ def send_message(citizen,message,config):
      
     }
     r = requests.get(config['serverURL']+'/user/newtask',headers=headers).json()
+    message.task_id = r['taskid']
+    message.save()
     print(r)
     return r
 
