@@ -73,6 +73,7 @@ class Message(Model):
     message_json = TextField()
     message_type = CharField() #[COLLECTFAIL,MACHINEFAIL]
     answer = CharField(null=True) # [NOTUSE,NOTCONNECT,ERROR,NOTRIP,TRIPMADE]
+    task_id = CharField() #id of the task in i-Log
 
     class Meta:
         database = db
