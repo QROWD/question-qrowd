@@ -102,6 +102,7 @@ def send_message(citizen,message,config):
      
     }
     r = requests.get(config['serverURL']+'/user/newtask',headers=headers).json()
+    print(r)
     return r
 
 
@@ -139,6 +140,40 @@ def instantiate_message(citizen,citizen_data,config):
         raise NameError('Unknown collection mode '+ citizen.collection_mode)
     return message
 
+def process_citizen(citizen,daily_log_stats,config):
+    print(citizen.citizen_id)
+    citizen_data = [data['days'][0]['tables'] for data in daily_log_stats if data['userid'] == citizen.citizen_id ]
+    citizen_data = citizen_data[0]
+    # Trips for which no question has been asked
+    # TODO: Might be cases where a question was instantiated but not yet asked
+    new_trips = [trip for trip in citizen.trips if len(trip.questions) == 0]
+    
+    # If no trips detected, send warning message 
+    if len(new_trips) == 0 :
+        print ("No new trips for citizen "+ str(citizen.citizen_id))
+        print ("Instantiating relevant message...")
+        message = instantiate_message(citizen,citizen_data,config)
+        print ("Sending message...")
+        send_message(citizen,message,config['iLog'])
+
+    for trip in new_trips:
+        #TODO: Change to proper logging
+        print ("Asking question to citizen "+ str(citizen.citizen_id))
+        print ("referring trip " + str(trip.trip_id))
+        print ("question type "+ citizen.question_preference)
+        if citizen.question_preference == 'SEGMENT':
+            question = qg.instantiate_question(trip,'SEGMENT',config)
+            response = ask_question(question,config['iLog'])
+            print ("Response: " + str(response))
+        elif citizen.question_preference == 'POINTS':
+            question = qg.instantiate_question(trip,'POINTS',config)
+            response = ask_question(question,config['iLog'])
+            print ("Response: " + str(response))
+           #TODO: Add exception to delete instantiated question if server issue 
+        else:
+            #TODO: Change to exception
+            print ("ERROR: Unknown question type")
+
 def process_questions(config):
 
     print ("Processing questions...")
@@ -146,38 +181,7 @@ def process_questions(config):
     daily_log_stats = check_data_for_date(config['iLog'])
 
     for citizen in dm.Citizen.select():
-        print(citizen.citizen_id)
-        citizen_data = [data['days'][0]['tables'] for data in daily_log_stats if data['userid'] == citizen.citizen_id ]
-        citizen_data = citizen_data[0]
-        # Trips for which no question has been asked
-        # TODO: Might be cases where a question was instantiated but not yet asked
-        new_trips = [trip for trip in citizen.trips if len(trip.questions) == 0]
-        
-        # If no trips detected, send warning message 
-        if len(new_trips) == 0 :
-            print ("No new trips for citizen "+ str(citizen.citizen_id))
-            print ("Instantiating relevant message...")
-            message = instantiate_message(citizen,citizen_data,config)
-            print ("Sending message...")
-            send_message(citizen,message,config['iLog'])
-
-        for trip in new_trips:
-            #TODO: Change to proper logging
-            print ("Asking question to citizen "+ str(citizen.citizen_id))
-            print ("referring trip " + str(trip.trip_id))
-            print ("question type "+ citizen.question_preference)
-            if citizen.question_preference == 'SEGMENT':
-                question = qg.instantiate_question(trip,'SEGMENT',config)
-                response = ask_question(question,config['iLog'])
-                print ("Response: " + str(response))
-            elif citizen.question_preference == 'POINTS':
-                question = qg.instantiate_question(trip,'POINTS',config)
-                response = ask_question(question,config['iLog'])
-                print ("Response: " + str(response))
-                #TODO: Add exception to delete instantiated question if server issue 
-            else:
-                #TODO: Change to exception
-                print ("ERROR: Unknown question type")
+        process_citizen(citizen,daily_log_stats,config)
 
 def main():
     config = configparser.ConfigParser()
