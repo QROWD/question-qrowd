@@ -27,11 +27,11 @@
         "p": [
           {
             "l": "en-US",
-            "t": "I did not use iLog today"
+            "t": "I did not use i-Log today"
           },
           {
             "l": "it-IT",
-            "t": "Non ho usato iLog oggi"
+            "t": "Non ho usato i-Log oggi"
           }
         ]
       },
@@ -44,11 +44,11 @@
         "p": [
           {
             "l": "en-US",
-            "t": "I could not connect to wifi to upload data"
+            "t": "I could not connect to Wi-Fi to upload data"
           },
           {
             "l": "it-IT",
-            "t": "Non ho potuto connettermi al wifi per caricare i dati"
+            "t": "Non ho potuto connettermi al Wi-Fi per caricare i dati"
           }
         ]
       },
@@ -61,11 +61,11 @@
         "p": [
           {
             "l": "en-US",
-            "t": "I did upload data today, what could it be?"
+            "t": "Actually, I did make some trips today, I don't know what it could be."
           },
           {
             "l": "it-IT",
-            "t": "Non ho caricato dati oggi, a cosa potrebbe essere dovuto?"
+            "t": "A dire la verità ho effettuato dei viaggi oggi, non so a cosa potrebbe essere dovuto"
           }
         ]
       }
