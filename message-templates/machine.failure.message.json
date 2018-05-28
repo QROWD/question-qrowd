@@ -13,7 +13,7 @@
         },
         {
           "l": "it-IT",
-          "t": "Yikes!, we collected enough data from you today, but we did not detect any trip. To improve, let us know if"
+          "t": "Accidenti!, abbiamo raccolto abbastanza dati per oggi, ma non abbiamo rilevato alcun viaggio. Per aiutarci, dicci se:"
         }
       ]
     },
@@ -31,7 +31,7 @@
           },
           {
             "l": "it-IT",
-            "t": "You did not make any trip today"
+            "t": "Non hai fatto alcun viaggio oggi"
           }
         ]
       },
@@ -48,7 +48,7 @@
           },
           {
             "l": "it-IT",
-            "t": "You did some trips today"
+            "t": "Hai fatto dei viaggi oggi"
           }
         ]
       }

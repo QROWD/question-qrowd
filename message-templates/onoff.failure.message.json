@@ -13,7 +13,7 @@
         },
         {
           "l": "it-IT",
-          "t": "Yikes!, it seems we did not get any trip from you today. What it might be?"
+          "t": "Accidenti!, non abbiamo rilevato alcun viaggio oggi. A cosa potrebbe essere dovuto?"
         }
       ]
     },
@@ -31,7 +31,7 @@
           },
           {
             "l": "it-IT",
-            "t": "I did not use iLog today"
+            "t": "Non ho usato iLog oggi"
           }
         ]
       },
@@ -48,7 +48,7 @@
           },
           {
             "l": "it-IT",
-            "t": "I could not connect to wifi to upload data"
+            "t": "Non ho potuto connettermi al wifi per caricare i dati"
           }
         ]
       },
@@ -65,7 +65,7 @@
           },
           {
             "l": "it-IT",
-            "t": "I did upload data today, what could it be?"
+            "t": "Non ho caricato dati oggi, a cosa potrebbe essere dovuto?"
           }
         ]
       }
@@ -85,11 +85,11 @@
       "p": [
         {
           "l": "en-US", 
-          "t": "That's alright. If you need further help, please get in touch to _______"
+          "t": "That's alright. If you need further help, please get in touch with trento.smart@comune.trento.it"
         },
         {
           "l": "it-IT",
-          "t": "That's alright. If you need further help, please get in touch to _______"
+          "t": "Non è un problema. Se hai bisogno di assistenza, per favore contattaci a trento.smart@comune.trento.it"
         }
       ]
     },
@@ -132,7 +132,7 @@
         },
         {
           "l": "it-IT",
-          "t": "That's alright. We will try again tomorrow, you might get questions about today's trips then"
+          "t": "Non è un problema. Proveremo di nuovo domani, quindi potresti ricevere domande sui viagggi di oggi"
         }
       ]
     },
@@ -170,11 +170,11 @@
       "p": [
         {
           "l": "en-US", 
-          "t": "Hum... it might be an issue with your phone. Check if your GPS is set to maximum accuracy. If you had it already, please get in touch through ______"
+          "t": "Hum... it might be an issue with your phone. Check if your GPS is set to maximum accuracy. If you had it already, please get in touch through trento.smart@comune.trento.it"
         },
         {
           "l": "it-IT",
-          "t": "Hum... it might be an issue with your phone. Check if your GPS is set to maximum accuracy. If you had it already, please get in touch through _____"
+          "t": "Hum... potrebbe essere un problema del tuo telefono. Controlla se il tuo GPS è impostato in modalità Alta Precisione. Nel caso lo fosse già, per favore contattaci a trento.smart@comune.trento.it"
         }
       ]
     },
