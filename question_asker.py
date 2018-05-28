@@ -25,7 +25,7 @@ def ask_question(question,config):
 
 def check_data_for_date(config,date=datetime.today().date()):
     #TODO: support array of dates
-    print(date)
+    print("Checking data for date "+ str(date))
     headers = {
             'cache-control' : 'no-cache' ,
             'email': config['serverlogin'] , 
@@ -134,6 +134,9 @@ def instantiate_message(citizen,citizen_data,config):
             with open(config['templateDir']['messages']+"onoff.failure.message.json") as template_f:
                 m_json = json.load(template_f)
             message = dm.Message.create( citizen_id = citizen.citizen_id, message_json = m_json, message_type = 'COLLECTIONFAILURE')
+    else:
+        print("Unknown collection mode, stopping now")
+        raise NameError('Unknown collection mode '+ citizen.collection_mode)
     return message
 
 def process_questions(config):
@@ -154,7 +157,7 @@ def process_questions(config):
         if len(new_trips) == 0 :
             print ("No new trips for citizen "+ str(citizen.citizen_id))
             print ("Instantiating relevant message...")
-            message = instantiate_message(citizen,citizen_data)
+            message = instantiate_message(citizen,citizen_data,config)
             print ("Sending message...")
             send_message(citizen,message,config['iLog'])
 
@@ -179,6 +182,7 @@ def process_questions(config):
 def main():
     config = configparser.ConfigParser()
     config.read('question-config.ini')
+    dm.db.init(config['db']['dbPath'])
     process_questions(config)
     #r = check_data_for_dates(config['iLog'],datetime(2018,4,12),datetime(2018,4,12))
     #r = check_data_for_date(config['iLog'])
