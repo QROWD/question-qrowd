@@ -88,15 +88,15 @@ def set_points_template(trip,config):
     q_json[0]['q']['p'][1]['t'] = q_json[0]['q']['p'][1]['t'].format(trip_data=trip_data) 
     #TODO: set point
     point = json.loads(trip.start_coordinate)
-    q_json[0]['q']['l']['lat'] = point[1]
-    q_json[0]['q']['l']['lon'] = point[0]
+    q_json[0]['q']['l']['lat'] = point[0]
+    q_json[0]['q']['l']['lon'] = point[1]
 
     # Second question 
     q_json[1]['q']['p'][0]['t'] = q_json[1]['q']['p'][0]['t'].format(trip_data=trip_data)
     q_json[1]['q']['p'][1]['t'] = q_json[1]['q']['p'][1]['t'].format(trip_data=trip_data) 
     point = json.loads(trip.stop_coordinate)
-    q_json[1]['q']['l']['lat'] = point[1]
-    q_json[1]['q']['l']['lon'] = point[0]
+    q_json[1]['q']['l']['lat'] = point[0]
+    q_json[1]['q']['l']['lon'] = point[1]
 
     # Third question does not require instantiation    
     return q_json
