@@ -35,7 +35,7 @@ def set_segment_template(trip,config):
     start_date =  str(trip.start_timestamp.day) + '/' +  str(trip.start_timestamp.month)
     start_time = str(trip.start_timestamp.hour) + ':' + trip.start_timestamp.strftime('%M')
     stop_date =  str(trip.stop_timestamp.day) + '/' +  str(trip.stop_timestamp.month)
-    stop_time = str(trip.stop_timestamp.hour) + ':' + trip.start_timestamp.strftime('%M')
+    stop_time = str(trip.stop_timestamp.hour) + ':' + trip.stop_timestamp.strftime('%M')
 
     trip_data = {
             'start_date': start_date ,
@@ -51,8 +51,8 @@ def set_segment_template(trip,config):
     q_json[0]['q']['p'][1]['t'] = q_json[0]['q']['p'][1]['t'].format(trip_data=trip_data) 
     #TODO: defensive code in case of null path
     json_path = json.loads(trip.path)
-    lats = [point[0] for point in json_path]
-    lons = [point[1] for point in json_path]
+    lats = [point[1] for point in json_path]
+    lons = [point[0] for point in json_path]
 
     q_json[0]['q']['la'] = lats
     q_json[0]['q']['lo'] = lons
