@@ -117,26 +117,26 @@ def instantiate_message(citizen,citizen_data,config):
             print ("Enough collection, sending machine failure message")
             with open(config['templateDir']['messages']+"/machine.failure.message.json") as template_f:
                 m_json = json.load(template_f)
-            message = dm.Message.create( citizen_id = citizen.citizen_id, message_json = m_json, message_type = 'MACHINEFAILURE')
+            message = dm.Message.create( citizen_id = citizen.citizen_id, message_json = m_json, message_type = 'MACHINEFAILURE', task_id= 0)
         #Something happened with location
         else:
             print ("Location failure, sending collection failure message")
             with open(config['templateDir']['messages']+"collection.failure.message.json") as template_f:
                 m_json = json.load(template_f)
-            message = dm.Message.create(citizen_id = citizen.citizen_id, message_json = m_json, message_type = 'COLLECTIONFAILURE')
+            message = dm.Message.create(citizen_id = citizen.citizen_id, message_json = m_json, message_type = 'COLLECTIONFAILURE', task_id= 0)
     elif (citizen.collection_mode == "ON-OFF"):
         #TODO: The value of 2 is wired from the reward
         if (is_collected_location_enough(citizen_data,2)):
             print ("Enough collection, sending machine failure message")
             with open(config['templateDir']['messages']+"machine.failure.message.json") as template_f:
                 m_json = json.load(template_f)
-            message = dm.Message.create(citizen_id = citizen.citizen_id, message_json = m_json, message_type = 'MACHINEFAILURE')
+            message = dm.Message.create(citizen_id = citizen.citizen_id, message_json = m_json, message_type = 'MACHINEFAILURE', task_id= 0)
         #Something happened with location
         else:
             print ("Location collection failure, sending collection failure")
             with open(config['templateDir']['messages']+"onoff.failure.message.json") as template_f:
                 m_json = json.load(template_f)
-            message = dm.Message.create( citizen_id = citizen.citizen_id, message_json = m_json, message_type = 'COLLECTIONFAILURE')
+            message = dm.Message.create( citizen_id = citizen.citizen_id, message_json = m_json, message_type = 'COLLECTIONFAILURE', task_id= 0)
     else:
         print("Unknown collection mode, stopping now")
         raise NameError('Unknown collection mode '+ citizen.collection_mode)
