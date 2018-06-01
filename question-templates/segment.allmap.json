@@ -13,7 +13,7 @@
          "p":[
             {
                "l":"en-US",
-               "t":"We detected that on {trip_data[start_date]} at around {trip_data[start_time]}, you made a trip to from {trip_data[start_address]} to {trip_data[stop_address]}, arriving around {trip_data[stop_time]}. Is this correct?"
+               "t":"We detected that on {trip_data[start_date]} at around {trip_data[start_time]}, you made a trip from {trip_data[start_address]} to {trip_data[stop_address]}, arriving around {trip_data[stop_time]}. Is this correct?"
             },
             {
                "l":"it-IT",
