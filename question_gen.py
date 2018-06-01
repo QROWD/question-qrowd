@@ -47,6 +47,13 @@ def set_segment_template(trip,config):
             }
 
     # First question    
+    #EN
+    if (trip.start_address == '' or trip.stop_address == ''):
+        alter_text = "We detected that on {trip_data[start_date]} at around {trip_data[start_time]}, you made a trip approximately on the path marked on the map, arriving around {trip_data[stop_time]}. Is this correct?"
+        q_json[0]['q']['p'][0]['t'] = alter_text
+        alter_text = "Abbiamo rilevato che il giorno {trip_data[start_date]} dalle {trip_data[start_time]} alle {trip_data[stop_time]} hai effettuato uno spostamento, approssimativamente sul percorso sulla mappa. È corretto?"
+        q_json[0]['q']['p'][1]['t'] = alter_text
+
     q_json[0]['q']['p'][0]['t'] = q_json[0]['q']['p'][0]['t'].format(trip_data=trip_data)
     q_json[0]['q']['p'][1]['t'] = q_json[0]['q']['p'][1]['t'].format(trip_data=trip_data) 
     #TODO: defensive code in case of null path
@@ -61,6 +68,7 @@ def set_segment_template(trip,config):
     # Second question does not require instantiation (transport mode)
 
     # Third question    
+
     q_json[2]['q']['p'][0]['t'] = q_json[2]['q']['p'][0]['t'].format(trip_data=trip_data)
     q_json[2]['q']['p'][1]['t'] = q_json[2]['q']['p'][1]['t'].format(trip_data=trip_data) 
 
@@ -84,6 +92,12 @@ def set_points_template(trip,config):
             }
 
     # First question    
+    if trip.start_address == '':
+        alter_text = "We detected that on {trip_data[start_date]} at {trip_data[start_time]}, you started a trip near the point on the map below,. Is this correct?"
+        q_json[0]['q']['p'][0]['t'] = alter_text
+        alter_text = "Abbiamo rilevato che il giorno {trip_data[start_date]} alle {trip_data[start_time]} hai effettuato uno spostamento con punto di partenza vicino al punto sulla mappa. È corretto?"
+        q_json[0]['q']['p'][1]['t'] = alter_text
+
     q_json[0]['q']['p'][0]['t'] = q_json[0]['q']['p'][0]['t'].format(trip_data=trip_data)
     q_json[0]['q']['p'][1]['t'] = q_json[0]['q']['p'][1]['t'].format(trip_data=trip_data) 
     #TODO: set point
@@ -92,6 +106,12 @@ def set_points_template(trip,config):
     q_json[0]['q']['l']['lon'] = point[1]
 
     # Second question 
+    if trip.stop_address == '':
+        alter_text = "Great!, we then detected that you traveled somewhere near the point on the map below, arriving at {trip_data[stop_time]}. Is this correct?" 
+        q_json[2]['q']['p'][0]['t'] = alter_text
+        alter_text = "Ottimo! Abbiamo poi rilevato che ti sei spostato/a fino al punto sulla mappa , dove sei arrivato all'ora {trip_data[stop_time]}. È corretto?"
+        q_json[2]['q']['p'][1]['t'] = alter_text
+
     q_json[1]['q']['p'][0]['t'] = q_json[1]['q']['p'][0]['t'].format(trip_data=trip_data)
     q_json[1]['q']['p'][1]['t'] = q_json[1]['q']['p'][1]['t'].format(trip_data=trip_data) 
     point = json.loads(trip.stop_coordinate)
