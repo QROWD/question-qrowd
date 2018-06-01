@@ -89,13 +89,13 @@ class Transport_mode(Model):
 def initialize(dbname):
     db.init(dbname)
     db.connect()
-    db.create_tables([Citizen,Trip,Question,Message,MultiModalTrip,Stop_answer,Transport_mode])
+    db.create_tables([Citizen,MultiModalTrip,Trip,Question,Message,Stop_answer,Transport_mode])
     db.close()
 
 def main():
-    db.init('pilot2.sqlite')
+    db.init('pilot2-segment.sqlite')
     db.connect()
-    db.create_tables([Citizen,Trip,Question,Message,Stop_answer,Transport_mode])
+    db.create_tables([Citizen,MultiModalTrip,Trip,Question,Message,Stop_answer,Transport_mode])
     db.close()
 
 
