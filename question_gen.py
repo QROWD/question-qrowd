@@ -80,7 +80,7 @@ def set_points_template(trip,config):
     start_date =  str(trip.start_timestamp.day) + '/' +  str(trip.start_timestamp.month)
     start_time = str(trip.start_timestamp.hour) + ':' + trip.start_timestamp.strftime('%M')
     stop_date =  str(trip.stop_timestamp.day) + '/' +  str(trip.stop_timestamp.month)
-    stop_time = str(trip.stop_timestamp.hour) + ':' + trip.start_timestamp.strftime('%M')
+    stop_time = str(trip.stop_timestamp.hour) + ':' + trip.stop_timestamp.strftime('%M')
 
     trip_data = {
             'start_date': start_date ,
@@ -88,7 +88,7 @@ def set_points_template(trip,config):
             'start_address': trip.start_address ,
             'stop_date': stop_date ,
             'stop_time': stop_time ,
-            'stop_address': trip.stop_address ,
+            'stop_address': trip.stop_address 
             }
 
     # First question    
