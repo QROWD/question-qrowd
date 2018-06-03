@@ -19,6 +19,7 @@ def instantiate_question(trip,q_type,config):
         q_json = set_segment_template(trip,config)
     elif(q_type == "POINTS"):
         q_json = set_points_template(trip,config)
+    #TODO: Defensive code aginst wrong question type
 
     question = dm.Question.create(
         citizen_id = trip.citizen_id,
@@ -66,11 +67,22 @@ def set_segment_template(trip,config):
 
 
     # Second question does not require instantiation (transport mode)
+    q_json[1]['q']['la'] = lats
+    q_json[1]['q']['lo'] = lons
 
     # Third question    
 
     q_json[2]['q']['p'][0]['t'] = q_json[2]['q']['p'][0]['t'].format(trip_data=trip_data)
     q_json[2]['q']['p'][1]['t'] = q_json[2]['q']['p'][1]['t'].format(trip_data=trip_data) 
+
+    point = json.loads(trip.stop_coordinate)
+    q_json[2]['q']['l']['lat'] = point[0]
+    q_json[2]['q']['l']['lon'] = point[1]
+
+    # Fourth question    
+
+    q_json[3]['q']['la'] = lats
+    q_json[3]['q']['lo'] = lons
 
     return q_json
 
@@ -153,13 +165,14 @@ def get_answer(question,config):
 def main():
     config = configparser.ConfigParser()
     config.read('question-config.ini')
+    dm.db.init(config['db']['dbPath'])
     
-    test_trip = dm.Trip.get(trip_id=1)
+    test_trip = dm.Trip.get(trip_id=47)
     test_question = instantiate_question(test_trip,"SEGMENT",config)
     print(test_question.question_json)
 
-    test_question = instantiate_question(test_trip,"POINTS",config)
-    print(test_question.question_json)
+    #test_question = instantiate_question(test_trip,"POINTS",config)
+    #print(test_question.question_json)
 
     #test_question = dm.Question.get(question_id=1)
     #print(ask_question(test_question,config['ilog']))
