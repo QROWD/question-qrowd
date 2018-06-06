@@ -178,6 +178,7 @@ def process_citizen(citizen,daily_log_stats,config):
                 print ("ERROR: Unknown question type")
         except:
             print("error sending question")
+            continue
 
 def process_questions(config):
 
