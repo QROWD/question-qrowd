@@ -159,22 +159,25 @@ def process_citizen(citizen,daily_log_stats,config):
         send_message(citizen,message,config['iLog'])
 
     for trip in new_trips:
-        #TODO: Change to proper logging
-        print ("Asking question to citizen "+ str(citizen.citizen_id))
-        print ("referring trip " + str(trip.trip_id))
-        print ("question type "+ citizen.question_preference)
-        if citizen.question_preference == 'SEGMENT':
-            question = qg.instantiate_question(trip,'SEGMENT',config)
-            response = ask_question(question,config['iLog'])
-            print ("Response: " + str(response))
-        elif citizen.question_preference == 'POINTS':
-            question = qg.instantiate_question(trip,'POINTS',config)
-            response = ask_question(question,config['iLog'])
-            print ("Response: " + str(response))
-           #TODO: Add exception to delete instantiated question if server issue 
-        else:
-            #TODO: Change to exception
-            print ("ERROR: Unknown question type")
+        try:
+            #TODO: Change to proper logging
+            print ("Asking question to citizen "+ str(citizen.citizen_id))
+            print ("referring trip " + str(trip.trip_id))
+            print ("question type "+ citizen.question_preference)
+            if citizen.question_preference == 'SEGMENT':
+                question = qg.instantiate_question(trip,'SEGMENT',config)
+                response = ask_question(question,config['iLog'])
+                print ("Response: " + str(response))
+            elif citizen.question_preference == 'POINTS':
+                question = qg.instantiate_question(trip,'POINTS',config)
+                response = ask_question(question,config['iLog'])
+                print ("Response: " + str(response))
+               #TODO: Add exception to delete instantiated question if server issue 
+            else:
+                #TODO: Change to exception
+                print ("ERROR: Unknown question type")
+        except:
+            print("error sending question")
 
 def process_questions(config):
 
