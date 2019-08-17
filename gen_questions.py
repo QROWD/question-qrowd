@@ -1,9 +1,32 @@
 import datamodel as dm
+#import configparser
 import json
 from datetime import datetime
 from collections import OrderedDict
 
-def set_trip_data(trip):
+def gen_trip_question(trip,template_path):
+    """
+    Input: Trip, question template
+    Output: Instantiate question about input trip
+    """
+    with open(template_path) as template_f:
+        q_json = json.load(template_f)
+
+    trip_data = get_trip_data(trip)
+    pass
+
+def gen_failsafe_question(template_path,citizen,date,trip_number):
+    """
+    Input: failsafe question template
+    Output: Instantiate question about input trip
+    """
+    with open(template_path) as template_f:
+        q_json = json.load(template_f)
+    data = {'date' : date.strftime("%Y%m%d"),'citizen_id' : citizen.citizen_id, 'trip_number' : trip_number}
+    q_json[3]['q']['url'] = q_json[3]['q']['url'].format(**data)
+    return q_json
+
+def get_trip_data(trip):
     start_date =  str(trip.start_timestamp.day) + '/' +  str(trip.start_timestamp.month)
     start_time = str(trip.start_timestamp.hour) + ':' + trip.start_timestamp.strftime('%M')
     stop_date =  str(trip.stop_timestamp.day) + '/' +  str(trip.stop_timestamp.month)
