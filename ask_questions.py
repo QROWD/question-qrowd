@@ -28,9 +28,10 @@ def ask_question(question,config):
     question.save()
     return r
 
-def create_db_question(trip):
-    #q_json = gq.set_template(trip)
-    q_json = gq.set_study_template(trip)
+def create_db_question(config,trip):
+    template_path = config['templateDir']['questions']+"trip-detected-question.json")
+    tui_url = config['tui']['tui_url']
+    q_json = gq.gen_trip_question(template_path,tui_url,trip)
     question = dm.Question.create(
         citizen_id = trip.citizen_id,
         trip_id = trip.trip_id,
@@ -129,6 +130,7 @@ def main():
             r = ask_practice_question(config,citizen)
             print(r.text)
     else:
+        #TODO: If no trips, send a failsafe question
         #Today's trips
         print("Processing trips of date "+ DATE.strftime("%Y%m%d"))
         for trip in dm.Trip.select().where(dm.Trip.start_timestamp.between(DATE,DATE+timedelta(days=1))):
