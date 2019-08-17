@@ -1,0 +1,349 @@
+[
+    {
+      "q":{
+         "id":1,
+         "c":[
+         ],
+         "t":"t",
+         "at":"s",
+         "p":[
+            {
+               "l":"en-US",
+               "t":"Oh! We could not detect any trip from your data from yesterday"
+            },
+            {
+               "l":"it-IT",
+               "t":"To be translated"
+            }
+         ]
+      },
+      "a":[
+         {
+            "id":1,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"Yesterday, I stopped i-Log or turned my phone off"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"To be translated"
+               }
+            ]
+         },
+         {
+            "id":2,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"Strange, I did use i-Log yesterday"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"To be translated"
+               }
+            ]
+         }         
+      ]
+   },
+   {
+      "q":{
+         "id":2,
+         "c":[
+             {"q" : 1 ,
+              "a" : 1}
+
+         ],
+         "t":"t",
+         "at":"s",
+         "p":[
+            {
+               "l":"en-US",
+               "t":"That's alright. Would you still like to input your trips manually?"
+            },
+            {
+               "l":"it-IT",
+               "t":"To be translated"
+            }
+         ]
+      },
+      "a":[
+         {
+            "id":1,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"Yes, sure"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"To be translated"
+               }
+            ]
+         },
+         {
+            "id":2,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"I rather not to for privacy reasons"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"To be translated"
+               }
+            ]
+         }         
+      ]
+   },
+   {
+      "q":{
+         "id":3,
+         "c":[
+             {"q" : 2 ,
+              "a" : 3}
+
+         ],
+         "t":"t",
+         "at":"s",
+         "p":[
+            {
+               "l":"en-US",
+               "t":"That's alright. Thanks!"
+            },
+            {
+               "l":"it-IT",
+               "t":"To be translated"
+            }
+         ]
+      },
+      "a":[
+         {
+            "id":1,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"OK"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"OK"
+               }
+            ]
+         }        
+      ]
+   },
+{
+      "q":{
+         "c":[
+             {"q" : 2 ,
+              "a" : 1}
+	 ],
+         "id":4,
+         "t":"wv",
+         "url":"https://msui.websci.net/?blank=1&f={date}_{citizen_id}_manual_trip_{trip_number}"
+      }
+   },
+   {
+      "q":{
+         "id":5,
+         "c":[
+             {"q" : 2,
+              "a" : 1}
+
+         ],
+         "t":"t",
+         "at":"s",
+         "p":[
+            {
+               "l":"en-US",
+               "t":"Would you like to add another trip? (3 more)"
+            },
+            {
+               "l":"it-IT",
+               "t":"To be translated"
+            }
+         ]
+      },
+      "a":[
+         {
+            "id":1,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"Yes"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"Yes"
+               }
+            ]
+         },        
+         {
+            "id":2,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"No, that was it"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"To be translated"
+               }
+            ]
+         }        
+      ]
+   },
+   {
+      "q":{
+         "c":[
+             {"q" : 5,
+              "a" : 1}
+	 ],
+         "id":6,
+         "t":"wv",
+         "url":"https://msui.websci.net/?blank=1&f={date}_{user_id}_manual_trip_1"
+      }
+   },
+   {
+      "q":{
+         "id":7,
+         "c":[
+             {"q" : 5,
+              "a" : 1}
+
+         ],
+         "t":"t",
+         "at":"s",
+         "p":[
+            {
+               "l":"en-US",
+               "t":"Would you like to add another trip? (2 more)"
+            },
+            {
+               "l":"it-IT",
+               "t":"To be translated"
+            }
+         ]
+      },
+      "a":[
+         {
+            "id":1,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"Yes"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"Yes"
+               }
+            ]
+         },        
+         {
+            "id":2,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"No, that was it"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"To be translated"
+               }
+            ]
+         }        
+      ]
+   },
+
+{
+      "q":{
+         "c":[
+             {"q" : 7,
+              "a" : 1}
+	 ],
+         "id":8,
+         "t":"wv",
+         "url":"https://msui.websci.net/?blank=1&f={date}_{user_id}_manual_trip_2"
+      }
+   },
+   {
+      "q":{
+         "id":9,
+         "c":[
+             {"q" : 5,
+              "a" : 2},
+             {"q" : 7,
+              "a" : 2},
+             {"q" : 2,
+              "a" : 2}
+         ],
+         "t":"t",
+         "at":"s",
+         "p":[
+            {
+               "l":"en-US",
+               "t":"Thanks!"
+            },
+            {
+               "l":"it-IT",
+               "t":"To be translated"
+            }
+         ]
+      },
+      "a":[
+         {
+            "id":1,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"OK"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"OK"
+               }
+            ]
+         }        
+      ]
+   }]
