@@ -9,7 +9,7 @@
          "p":[
             {
                "l":"en-US",
-               "t":"Oh! We could not detect any trip from your data from yesterday"
+               "t":"Oh! We could not detect any trip from your data from yesterday's"
             },
             {
                "l":"it-IT",
@@ -58,7 +58,7 @@
       "q":{
          "id":2,
          "c":[
-             {"q" : 1 ,
+             {"q" : 1,
               "a" : 1}
 
          ],
@@ -102,7 +102,7 @@
             "p":[
                {
                   "l":"en-US",
-                  "t":"I rather not to for privacy reasons"
+                  "t":"I prefer not to for privacy reasons"
                },
                {
                   "l":"it-IT",
@@ -116,7 +116,7 @@
       "q":{
          "id":3,
          "c":[
-             {"q" : 2 ,
+             {"q" : 2,
               "a" : 3}
 
          ],
@@ -156,12 +156,12 @@
 {
       "q":{
          "c":[
-             {"q" : 2 ,
+             {"q" : 2,
               "a" : 1}
 	 ],
          "id":4,
          "t":"wv",
-         "url":"https://msui.websci.net/?blank=1&f={date}_{citizen_id}_manual_trip_{trip_number}"
+         "url":"https://msui.websci.net/?blank=1&f={date}_{citizen_id}_manual_trip_0"
       }
    },
    {
@@ -230,7 +230,7 @@
 	 ],
          "id":6,
          "t":"wv",
-         "url":"https://msui.websci.net/?blank=1&f={date}_{user_id}_manual_trip_1"
+         "url":"https://msui.websci.net/?blank=1&f={date}_{citizen_id}_manual_trip_1"
       }
    },
    {
@@ -300,18 +300,89 @@
 	 ],
          "id":8,
          "t":"wv",
-         "url":"https://msui.websci.net/?blank=1&f={date}_{user_id}_manual_trip_2"
+         "url":"https://msui.websci.net/?blank=1&f={date}_{citizen_id}_manual_trip_2"
       }
    },
    {
       "q":{
          "id":9,
          "c":[
+             {"q" : 7,
+              "a" : 1}
+
+         ],
+         "t":"t",
+         "at":"s",
+         "p":[
+            {
+               "l":"en-US",
+               "t":"Would you like to add another trip? (you may add 1 more)"
+            },
+            {
+               "l":"it-IT",
+               "t":"To be translated"
+            }
+         ]
+      },
+      "a":[
+         {
+            "id":1,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"Yes"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"Yes"
+               }
+            ]
+         },        
+         {
+            "id":2,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"No, that was it"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"To be translated"
+               }
+            ]
+         }        
+      ]
+   },
+   {
+      "q":{
+         "c":[
+             {"q" : 9,
+              "a" : 1}
+	 ],
+         "id":10,
+         "t":"wv",
+         "url":"https://msui.websci.net/?blank=1&f={date}_{citizen_id}_manual_trip_3"
+      }
+   },
+   {
+      "q":{
+         "id":11,
+         "c":[
              {"q" : 5,
               "a" : 2},
              {"q" : 7,
               "a" : 2},
              {"q" : 2,
+              "a" : 2},
+              {"q" : 9,
               "a" : 2}
          ],
          "t":"t",

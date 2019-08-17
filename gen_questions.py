@@ -15,15 +15,18 @@ def gen_trip_question(trip,template_path):
     trip_data = get_trip_data(trip)
     pass
 
-def gen_failsafe_question(template_path,citizen,date,trip_number):
+def gen_failsafe_question(template_path,citizen,date):
     """
     Input: failsafe question template
-    Output: Instantiate question about input trip
+    Output: Instantiate question 
     """
     with open(template_path) as template_f:
         q_json = json.load(template_f)
-    data = {'date' : date.strftime("%Y%m%d"),'citizen_id' : citizen.citizen_id, 'trip_number' : trip_number}
+    data = {'date' : date.strftime("%Y%m%d"),'citizen_id' : citizen.citizen_id}
     q_json[3]['q']['url'] = q_json[3]['q']['url'].format(**data)
+    q_json[5]['q']['url'] = q_json[5]['q']['url'].format(**data)
+    q_json[7]['q']['url'] = q_json[7]['q']['url'].format(**data)
+    q_json[9]['q']['url'] = q_json[9]['q']['url'].format(**data)
     return q_json
 
 def get_trip_data(trip):
