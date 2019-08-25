@@ -29,7 +29,7 @@ def ask_question(question,config):
     return r
 
 def create_db_question(config,trip):
-    template_path = config['templateDir']['questions']+"trip-detected-question.json")
+    template_path = config['templateDir']['questions']+"trip-detected-question.json"
     tui_url = config['tui']['tui_url']
     q_json = gq.gen_trip_question(template_path,tui_url,trip)
     question = dm.Question.create(
@@ -57,7 +57,9 @@ def ask_practice_question(config,citizen):
         q_json = json.load(template_f)
     
     q_json[4]['q']['url'] = q_json[4]['q']['url'].format(citizen.citizen_id)
-    print("Linking to trip interface ", q_json[4]['q']['url'])
+    q_json[7]['q']['url'] = q_json[7]['q']['url'].format(citizen.citizen_id)
+    print("Linking to confirm ", q_json[4]['q']['url'])
+    print("Linking to blank answer ", q_json[7]['q']['url'])
     headers = {
             'cache-control' : 'no-cache' ,
             'email': config['ilog']['serverlogin'] , 
