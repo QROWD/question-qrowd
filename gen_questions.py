@@ -41,9 +41,9 @@ def set_trip_data(trip):
     stop_time = str(trip.stop_timestamp.hour) + ':' + trip.stop_timestamp.strftime('%M')
     seen = set()
     path = json.loads(trip.path)
-    print (len(path))
+    #print (len(path))
     uni_path = [x for x in path if tuple(x) not in seen and not seen.add(tuple(x)) ]
-    print (len(uni_path))
+    #print (len(uni_path))
     trip_data = {
             'start_date': start_date ,
             'start_time': start_time ,

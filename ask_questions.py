@@ -7,7 +7,6 @@ import gen_questions as gq
 import gen_lists as gl
 
 #DATE=datetime(2019,3,16)
-DATE = (datetime.today()-timedelta(days=1)).replace(hour=0,minute=0,second=0,microsecond=0)
 TEST = False 
 
 def ask_question(question,config):
@@ -16,7 +15,8 @@ def ask_question(question,config):
             'email': config['ilog']['serverlogin'] , 
             'password': config['ilog']['serverpassword'] ,
             't_title': 'Domanda di conferma QROWDLab' , 
-            't_until': '864000' , 
+            't_until': '86400' , 
+            #'t_until': '864000' , 
             'content': json.dumps(question.question_json),
             'usersalt': question.citizen_id.citizen_id
             }
@@ -31,13 +31,13 @@ def ask_question(question,config):
 def ask_failsafe_question(config,citizen,date):
     template_path = config['templateDir']['questions']+"no-trip-detected-question-alt.json"
     failsafe = gq.gen_failsafe_question(template_path,'/journeys/ql6/test_trips',citizen,date)
-    print(failsafe)
     headers = {
             'cache-control' : 'no-cache' ,
             'email': config['ilog']['serverlogin'] , 
             'password': config['ilog']['serverpassword'] ,
             't_title': 'Domanda di conferma QROWDLab' , 
-            't_until': '864000' , 
+            #'t_until': '864000' , 
+            't_until': '86400' , 
             'content': json.dumps(failsafe),
             'usersalt': citizen.citizen_id
             }
@@ -87,7 +87,7 @@ def ask_practice_question(config,citizen):
             'email': config['ilog']['serverlogin'] , 
             'password': config['ilog']['serverpassword'] ,
             't_title': 'QROWDLab6 TEST QUESTION' , 
-            't_until': '864000' , 
+            't_until': '86400' , 
             'content': json.dumps(q_json),
             'usersalt': citizen.citizen_id
             }
@@ -143,30 +143,41 @@ def send_error_message(config):
 
             return send_message(config,citizen,q_json)
 
+def process_citizen(config,citizen,date):
+    #Today trips of this citizen
+    trips = dm.Trip.select().where((dm.Trip.citizen_id == citizen.citizen_id) & (dm.Trip.start_timestamp.between(date,date+timedelta(days=1))))
+    print("Processing citizen "+ str(citizen.citizen_id))
+    for trip in trips:
+        print("Trip_id "+ str(trip.trip_id))
+        question = create_db_question(config,trip)
+        resp = ask_question(question,config)
+        if resp is None:
+            print("Error: See above")
+        else: 
+            print("Question sent")
+    if len(trips) == 0:
+        print("No trips detected this date, sending failsafe question")
+        ask_failsafe_question(config,citizen,date)
+
+
 def main():
+    #DATE = (datetime.today()-timedelta(days=1)).replace(hour=0,minute=0,second=0,microsecond=0)
+    DATE=datetime(2019,5,20)
     config = configparser.ConfigParser()
-    config.read('./ql5-config.ini')
+    config.read('./ql6-config.ini')
     dm.db.init(config['db']['dbPath'])
+    citizens = dm.Citizen.select()
     if TEST:
         print("Sending Test question")
-        for citizen in dm.Citizen.select():
+        for citizen in citizens:
             print("citizen_id ",citizen.citizen_id)
             r = ask_practice_question(config,citizen)
             print(r.text)
     else:
-        #TODO: If no trips, send a failsafe question
         #Today's trips
         print("Processing trips of date "+ DATE.strftime("%Y%m%d"))
-        for trip in dm.Trip.select().where(dm.Trip.start_timestamp.between(DATE,DATE+timedelta(days=1))):
-            print("Citizen "+ str(trip.citizen_id.citizen_id))
-            print("Trip_id "+ str(trip.trip_id))
-            question = create_db_question(trip)
-            resp = ask_question(question,config)
-            if resp is None:
-                print("Error: See above")
-            else: 
-                print("Question sent")
-        print("Error message task ID = {}".format(send_error_message(config)))
+        for citizen in citizens:
+            process_citizen(config,citizen,DATE)
 
 
 if __name__=="__main__":
