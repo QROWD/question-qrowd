@@ -4,25 +4,30 @@ import json
 from datetime import datetime
 from collections import OrderedDict
 
-def gen_trip_question(trip,template_path):
+def gen_trip_question_alt(template_path,tui_url,trip):
     """
-    Input: Trip, question template
-    Output: Instantiate question about input trip
+    Question type including only TUI, without previous trio confirmation
     """
     with open(template_path) as template_f:
         q_json = json.load(template_f)
 
-    trip_data = get_trip_data(trip)
+    trip_data = set_trip_data(trip)
+
+    q_json[1]['q']['url'] = tui_url.format(trip_data=trip_data)
+
+    # Questions 4-6 are contextual, no need to instantiate 
     pass
 
-def gen_failsafe_question(template_path,citizen,date):
+    return q_json
+
+def gen_failsafe_question(template_path,tui_path,citizen,date):
     """
     Input: failsafe question template
     Output: Instantiate question 
     """
     with open(template_path) as template_f:
         q_json = json.load(template_f)
-    data = {'date' : date.strftime("%Y%m%d"),'citizen_id' : citizen.citizen_id}
+    data = {'tui_path' : tui_path ,'date' : date.strftime("%Y%m%d"),'citizen_id' : citizen.citizen_id}
     q_json[3]['q']['url'] = q_json[3]['q']['url'].format(**data)
     q_json[5]['q']['url'] = q_json[5]['q']['url'].format(**data)
     q_json[7]['q']['url'] = q_json[7]['q']['url'].format(**data)

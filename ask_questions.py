@@ -20,7 +20,7 @@ def ask_question(question,config):
             'content': json.dumps(question.question_json),
             'usersalt': question.citizen_id.citizen_id
             }
-    r = requests.get(config['iLog']['serverURL']+'/sendtask',headers=headers).json()
+    r = requests.get(config['ilog']['serverURL']+'/sendtask',headers=headers).json()
     if (r['status'] == 'error_message'):
         print(r['payload']['results'])
         return None
@@ -28,15 +28,37 @@ def ask_question(question,config):
     question.save()
     return r
 
+def ask_failsafe_question(config,citizen,date):
+    template_path = config['templateDir']['questions']+"no-trip-detected-question-alt.json"
+    failsafe = gq.gen_failsafe_question(template_path,'/journeys/ql6/test_trips',citizen,date)
+    print(failsafe)
+    headers = {
+            'cache-control' : 'no-cache' ,
+            'email': config['ilog']['serverlogin'] , 
+            'password': config['ilog']['serverpassword'] ,
+            't_title': 'Domanda di conferma QROWDLab' , 
+            't_until': '864000' , 
+            'content': json.dumps(failsafe),
+            'usersalt': citizen.citizen_id
+            }
+    r = requests.get(config['ilog']['serverURL']+'/sendtask',headers=headers).json()
+    if (r['status'] == 'error_message'):
+        print(r['payload']['results'])
+        return None
+    return r
+
 def create_db_question(config,trip):
-    template_path = config['templateDir']['questions']+"trip-detected-question.json"
+    #template_path = config['templateDir']['questions']+"trip-detected-question.json"
+    template_path = config['templateDir']['questions']+"trip-detected-question-alt.json"
     tui_url = config['tui']['tui_url']
-    q_json = gq.gen_trip_question(template_path,tui_url,trip)
+    #q_json = gq.gen_trip_question(template_path,tui_url,trip)
+    q_json = gq.gen_trip_question_alt(template_path,tui_url,trip)
     question = dm.Question.create(
         citizen_id = trip.citizen_id,
         trip_id = trip.trip_id,
         question_json = q_json,
-        update_url = q_json[4]['q']['url'],
+    #    update_url = q_json[4]['q']['url'],
+        update_url = q_json[1]['q']['url'],
         task_id = 0
         )
     return question
