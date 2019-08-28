@@ -1,0 +1,289 @@
+[
+{
+      "q":{
+         "c":[
+	 ],
+         "id":1,
+         "t":"wv",
+         "url":"https://sites.google.com/view/qrowdlab/verification-guide-it"
+      }
+   },
+
+{
+      "q":{
+         "id":2,
+         "c":[
+
+         ],
+         "t":"ms",
+         "la":[46.04097, 46.03845, 46.03931, 46.04287, 46.04868, 46.05492, 46.0636, 46.06923, 46.06978, 46.07289, 46.07296, 46.0754, 46.07977, 46.08304, 46.08178, 46.0838, 46.0838, 46.08395, 46.08407, 46.08649, 46.08745 
+         ],
+         "lo":[11.13804, 11.13923, 11.13975, 11.13998, 11.14376, 11.14884, 11.15015, 11.15045, 11.15039, 11.15228, 11.15216, 11.15116, 11.16114, 11.17731, 11.19591, 11.20037, 11.20037, 11.20057, 11.20062, 11.19997, 11.20047 
+         ],
+         "p":[
+            {
+               "l":"en-US",
+               "t":"We detected that on {trip_data[start_date]} you made a trip from {trip_data[start_address]} to {trip_data[stop_address]}, starting around {trip_data[start_time]} and arriving around {trip_data[stop_time]}. Is this correct?"
+            },
+            {
+               "l":"it-IT",
+               "t":"Abbiamo rilevato che il giorno {trip_data[start_date]} all'incirca tra le {trip_data[start_time]} e le {trip_data[stop_time]} hai effettuato uno o più viaggi come mostrato in maniera approssimativa sulla mappa. È corretto?"
+            }
+         ]
+      },
+      "a":[
+         {
+            "id":1,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"Yes"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"Sì"
+               }
+            ]
+         },
+         
+         {
+            "id":2,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"More or less. Some stops or transport mode changes are missing"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"Più o meno. Mancano uno o più punti in cui mi sono fermata/o oppure ho cambiato mezzo di trasporto"
+               }
+            ]
+         },
+        {
+            "id":3,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"No"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"No"
+               }
+            ]
+         },
+         
+         {
+            "id":4,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"I don't remember"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"Non mi ricordo"
+               }
+            ]
+         }      ]         
+   }
+   ,
+   {
+      "q":{
+         "id":3,
+         "c":[
+            {
+               "q":2,
+               "a":1
+            },
+            {
+               "q":2,
+               "a":3
+            }
+         ],
+         "t":"t",
+         "at":"s",
+         "p":[
+            {
+               "l":"en-US",
+               "t":"Great! In the next step, you will be able to confirm or amend the transport modes and legs of your trip"
+            },
+            {
+               "l":"it-IT",
+               "t":"Ottimo! Ora potrai, se necessario, modificare i punti sulla mappa o i mezzi di trasporto utilizzati"
+            }
+         ]
+      },
+      "a":[
+         {
+            "id":1,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"Understood"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"Ho capito"
+               }
+            ]
+         }      
+      ]
+   },
+   {
+      "q":{
+         "c":[
+		 { "q":3,
+               "a":1 }
+	 ],
+         "id":4,
+         "t":"wv",
+         "url":"https://sites.google.com/view/qrowdlab/update-guide-it"
+      }
+   },
+
+   
+   {
+      "q":{
+         "c":[{
+               "q":3,
+               "a":1
+            } ],
+         "id":5,
+         "t":"wv",
+         "url":"URL to Trip Update Interface"
+      }
+   },
+   {
+      "q":{
+         "id":6,
+         "c":[ {
+               "q":3,
+               "a":1
+            }
+    ],
+         "t":"t",
+         "at":"s",
+         "p":[
+            {
+               "l":"en-US",
+               "t":"Thanks! Your answers have been recorded"
+            },
+            {
+               "l":"it-IT",
+               "t":"Grazie, le tue risposte sono state registrate!"
+            }
+         ]
+      },
+      "a":[
+         {
+            "id":1,
+            "c":[
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"You're welcome!"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"Prego!"
+               }
+            ]
+         }
+      ]
+   } ,
+  {
+      "q":{
+         "id":7,
+         "c":[ {"q" : 2 , "a" : 2 }],
+         "t":"t",
+         "at":"s",
+         "p":[
+            {
+               "l":"en-US",
+               "t":"Oh! probably a detection mistake. We have registered it"
+            },
+            {
+               "l":"it-IT",
+               "t":"Oh! Probabilmente si è trattato di un errore di registrazione. Ce lo siamo segnati"
+            }
+         ]
+      },
+      "a":[
+         {
+            "id":1,
+            "c":[
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"Ok"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"Ok"
+               }
+            ]
+         }
+      ]
+  },
+  {
+      "q":{
+         "id":8,
+         "c":[ {"q" : 2 , "a" : 3 }],
+         "t":"t",
+         "at":"s",
+         "p":[
+            {
+               "l":"en-US",
+               "t":"That's alright"
+            },
+            {
+               "l":"it-IT",
+               "t":"Ok"
+            }
+         ]
+      },
+      "a":[
+         {
+            "id":1,
+            "c":[
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"Ok"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"Ok"
+               }
+            ]
+         }
+      ]
+  }
+]

@@ -1,0 +1,82 @@
+[ {
+      "q":{
+         "id":1,
+         "c":[],
+         "t":"t",
+         "at":"s",
+         "p":[
+            {
+               "l":"en-US",
+               "t":"In the next screen, we will show you a trip we detected. You will be able to confirm or amend it"
+            },
+            {
+               "l":"it-IT",
+               "t":"In the next screen, we will show you a trip we detected. You will be able to confirm or amend it"
+            }
+         ]
+      },
+      "a":[
+         {
+            "id":1,
+            "c":[
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"Ok"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"Ok"
+               }
+            ]
+         }
+      ]
+}
+    
+    ,{
+      "q":{
+         "c":[ {"q" : 1 , "a" : 1}],
+         "id":2,
+         "t":"wv",
+         "url":"URL to Trip Update Interface"
+      }
+   },
+   {
+      "q":{
+         "id":3,
+         "c":[  {"q" : 1 , "a" : 1}],
+         "t":"t",
+         "at":"s",
+         "p":[
+            {
+               "l":"en-US",
+               "t":"Thanks! Your answers have been recorded"
+            },
+            {
+               "l":"it-IT",
+               "t":"Grazie, le tue risposte sono state registrate!"
+            }
+         ]
+      },
+      "a":[
+         {
+            "id":1,
+            "c":[
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"You're welcome!"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"Prego!"
+               }
+            ]
+         }
+      ]
+   }
+]
