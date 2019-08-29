@@ -20,6 +20,10 @@ def gen_trip_question_alt(template_path,tui_url,trip):
 
     return q_json
 
+def gen_missing_question(template_path,tui_path,citizen,date):
+    # Missing template equal to failsafe template
+    return gen_failsafe_question(template_path,tui_path,citizen,date)
+
 def gen_failsafe_question(template_path,tui_path,citizen,date):
     """
     Input: failsafe question template

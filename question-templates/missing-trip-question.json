@@ -1,0 +1,423 @@
+
+[
+    {
+      "q":{
+         "id":1,
+         "c":[
+         ],
+         "t":"t",
+         "at":"s",
+         "p":[
+            {
+               "l":"en-US",
+               "t":"Did we miss any trip of yesterday?"
+            },
+            {
+               "l":"it-IT",
+               "t":"To be translated"
+            }
+         ]
+      },
+      "a":[
+         {
+            "id":1,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"No, I verified and amended all w"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"To be translated"
+               }
+            ]
+         },
+         {
+            "id":2,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"Yes"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"To be translated"
+               }
+            ]
+         }         
+      ]
+   },
+   {
+      "q":{
+         "id":2,
+         "c":[
+             {"q" : 1,
+              "a" : 1},
+             {"q" : 1,
+              "a" : 2}
+
+         ],
+         "t":"t",
+         "at":"s",
+         "p":[
+            {
+               "l":"en-US",
+               "t":"Thanks for telling us! Would you like to input those manually?"
+            },
+            {
+               "l":"it-IT",
+               "t":"To be translated"
+            }
+         ]
+      },
+      "a":[
+         {
+            "id":1,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"Yes, sure"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"To be translated"
+               }
+            ]
+         },
+         {
+            "id":2,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"I prefer not to for privacy reasons"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"To be translated"
+               }
+            ]
+         }         
+      ]
+   },
+   {
+      "q":{
+         "id":3,
+         "c":[
+             {"q" : 2,
+              "a" : 2}
+
+         ],
+         "t":"t",
+         "at":"s",
+         "p":[
+            {
+               "l":"en-US",
+               "t":"That's alright. Thanks!"
+            },
+            {
+               "l":"it-IT",
+               "t":"To be translated"
+            }
+         ]
+      },
+      "a":[
+         {
+            "id":1,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"OK"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"OK"
+               }
+            ]
+         }        
+      ]
+   },
+{
+      "q":{
+         "c":[
+             {"q" : 2,
+              "a" : 1}
+	 ],
+         "id":4,
+         "t":"wv",
+         "url":"https://static.vecteezy.com/system/resources/previews/000/266/061/large_2x/check-mark-in-circle-brush-draw-style-illustration-vector.jpg"
+      }
+   },
+   {
+      "q":{
+         "id":5,
+         "c":[
+             {"q" : 2,
+              "a" : 1}
+
+         ],
+         "t":"t",
+         "at":"s",
+         "p":[
+            {
+               "l":"en-US",
+               "t":"Would you like to add another trip? (3 more)"
+            },
+            {
+               "l":"it-IT",
+               "t":"To be translated"
+            }
+         ]
+      },
+      "a":[
+         {
+            "id":1,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"Yes"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"Yes"
+               }
+            ]
+         },        
+         {
+            "id":2,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"No, that was it"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"To be translated"
+               }
+            ]
+         }        
+      ]
+   },
+   {
+      "q":{
+         "c":[
+             {"q" : 5,
+              "a" : 1}
+	 ],
+         "id":6,
+         "t":"wv",
+         "url":"https://static.vecteezy.com/system/resources/previews/000/266/061/large_2x/check-mark-in-circle-brush-draw-style-illustration-vector.jpg"
+      }
+   },
+   {
+      "q":{
+         "id":7,
+         "c":[
+             {"q" : 5,
+              "a" : 1}
+
+         ],
+         "t":"t",
+         "at":"s",
+         "p":[
+            {
+               "l":"en-US",
+               "t":"Would you like to add another trip? (2 more)"
+            },
+            {
+               "l":"it-IT",
+               "t":"To be translated"
+            }
+         ]
+      },
+      "a":[
+         {
+            "id":1,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"Yes"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"Yes"
+               }
+            ]
+         },        
+         {
+            "id":2,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"No, that was it"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"To be translated"
+               }
+            ]
+         }        
+      ]
+   },
+
+{
+      "q":{
+         "c":[
+             {"q" : 7,
+              "a" : 1}
+	 ],
+         "id":8,
+         "t":"wv",
+         "url":"https://static.vecteezy.com/system/resources/previews/000/266/061/large_2x/check-mark-in-circle-brush-draw-style-illustration-vector.jpg"
+      }
+   },
+   {
+      "q":{
+         "id":9,
+         "c":[
+             {"q" : 7,
+              "a" : 1}
+
+         ],
+         "t":"t",
+         "at":"s",
+         "p":[
+            {
+               "l":"en-US",
+               "t":"Would you like to add another trip? (you may add 1 more)"
+            },
+            {
+               "l":"it-IT",
+               "t":"To be translated"
+            }
+         ]
+      },
+      "a":[
+         {
+            "id":1,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"Yes"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"Yes"
+               }
+            ]
+         },        
+         {
+            "id":2,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"No, that was it"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"To be translated"
+               }
+            ]
+         }        
+      ]
+   },
+   {
+      "q":{
+         "c":[
+             {"q" : 9,
+              "a" : 1}
+	 ],
+         "id":10,
+         "t":"wv",
+         "url":"https://static.vecteezy.com/system/resources/previews/000/266/061/large_2x/check-mark-in-circle-brush-draw-style-illustration-vector.jpg"
+      }
+   },
+   {
+      "q":{
+         "id":11,
+         "c":[
+             {"q" : 5,
+              "a" : 2},
+             {"q" : 7,
+              "a" : 2},
+              {"q" : 9,
+              "a" : 2},
+              {"q" : 9,
+              "a" : 1}
+         ],
+         "t":"t",
+         "at":"s",
+         "p":[
+            {
+               "l":"en-US",
+               "t":"Thanks for your input!"
+            },
+            {
+               "l":"it-IT",
+               "t":"To be translated"
+            }
+         ]
+      },
+      "a":[
+         {
+            "id":1,
+            "c":[
+
+            ],
+            "c_id":-1,
+            "p":[
+               {
+                  "l":"en-US",
+                  "t":"OK"
+               },
+               {
+                  "l":"it-IT",
+                  "t":"OK"
+               }
+            ]
+         }        
+      ]
+   }]

@@ -47,6 +47,21 @@ def ask_failsafe_question(config,citizen,date):
         return None
     return r
 
+def ask_missing_question(config,citizen,date):
+    template_path = config['templateDir']['questions']+"missing-trip-question.json"
+    missing = gq.gen_missing_question(template_path,'/journeys/ql6/test_trips',citizen,date)
+    headers = {
+            'cache-control' : 'no-cache' ,
+            'email': config['ilog']['serverlogin'] , 
+            'password': config['ilog']['serverpassword'] ,
+            't_title': 'Domanda di conferma QROWDLab' , 
+            #'t_until': '864000' , 
+            't_until': '86400' , 
+            'content': json.dumps(missing),
+            'usersalt': citizen.citizen_id
+            }
+    r = requests.get(config['ilog']['serverURL']+'/sendtask',headers=headers).json()
+
 def create_db_question(config,trip):
     #template_path = config['templateDir']['questions']+"trip-detected-question.json"
     template_path = config['templateDir']['questions']+"trip-detected-question-alt.json"
@@ -78,10 +93,10 @@ def ask_practice_question(config,citizen):
     with open(config['templateDir']['questions']+"practice-question.json") as template_f:
         q_json = json.load(template_f)
     
-    q_json[4]['q']['url'] = q_json[4]['q']['url'].format(citizen.citizen_id)
-    q_json[7]['q']['url'] = q_json[7]['q']['url'].format(citizen.citizen_id)
-    print("Linking to confirm ", q_json[4]['q']['url'])
-    print("Linking to blank answer ", q_json[7]['q']['url'])
+    q_json[2]['q']['url'] = q_json[2]['q']['url'].format(citizen.citizen_id)
+    q_json[5]['q']['url'] = q_json[5]['q']['url'].format(citizen.citizen_id)
+    print("Linking to confirm ", q_json[2]['q']['url'])
+    print("Linking to blank answer ", q_json[5]['q']['url'])
     headers = {
             'cache-control' : 'no-cache' ,
             'email': config['ilog']['serverlogin'] , 
@@ -158,11 +173,14 @@ def process_citizen(config,citizen,date):
     if len(trips) == 0:
         print("No trips detected this date, sending failsafe question")
         ask_failsafe_question(config,citizen,date)
+    else:
+        print("Sending missing trips question")
+        ask_missing_question(config,citizen,date)
 
 
 def main():
     #DATE = (datetime.today()-timedelta(days=1)).replace(hour=0,minute=0,second=0,microsecond=0)
-    DATE=datetime(2019,5,20)
+    DATE=datetime(2019,5,21)
     config = configparser.ConfigParser()
     config.read('./ql6-config.ini')
     dm.db.init(config['db']['dbPath'])
