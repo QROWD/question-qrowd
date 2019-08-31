@@ -47,9 +47,9 @@ class QuestionFailsafe(Model):
     question_id = AutoField(primary_key=True)
     citizen_id = ForeignKeyField(Citizen, backref = 'questions')
     task_id = CharField()
-    question_json = TextField()
+    #question_json = TextField()
     date = DateTimeField()
-    file_path = TextField(null=True)
+    file_paths = TextField(null=True)
     answer_json = TextField(null=True)
 
     class Meta:
