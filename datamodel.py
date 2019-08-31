@@ -35,7 +35,8 @@ class Question(Model):
     #All the JSON
     question_json = TextField()
     update_url = CharField()
-    diff_file_path = CharField(null=True)
+    answer_file_path = TextField(null=True)
+    diff_file_path = TextField(null=True)
     answer_json = TextField(null=True)
     answer_code = CharField(null=True)
 
