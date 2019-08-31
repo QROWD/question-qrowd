@@ -27,22 +27,30 @@ def get_trip_answers(date,user_id):
     ans = [(q.task_id,get_task_answer(user_id,q.task_id)) for q in qs]
     return ans
 
-def update_answer(answer):
+def get_failsafe_answers(date,user_id):
+    qs = dm.QuestionFailsafe.select().where((dm.QuestionFailsafe.citizen_id == user_id) & (dm.QuestionFailsafe.date <= date) & (dm.QuestionFailsafe.answer_json.is_null()))
+    ans = [(q.task_id,get_task_answer(user_id,q.task_id)) for q in qs]
+    return ans
+
+def update_answer(answer,qtype='Trip'):
     ans = answer[1]
     if ans['status'] == 'error_message':
         print(ans['status'])
         return None
-    q = dm.Question.get(dm.Question.task_id == answer[0])
+    if qtype == 'Trip':
+        q = dm.Question.get(dm.Question.task_id == answer[0])
+    elif qtype == 'Failsafe':
+        q = dm.QuestionFailsafe.get(dm.QuestionFailsafe.task_id == answer[0])
     q.answer_json = ans
     q.save()
     return q
     # The flow of the current answer means that all edits are in the json file
 
 
-def update_answers(answers):
+def update_answers(answers,qtype='Trip'):
     updates = {'answered':0,'pending':0}
     for a in answers:
-        q = update_answer(a)
+        q = update_answer(a,qtype)
         if q is None:
             updates['pending'] += 1
         else:
@@ -56,8 +64,9 @@ def main():
     dm.db.init('test/'+config['db']['dbPath'])
     citizen = config['test']['test_citizen_id']
     instance = config['ilog']['expcode']
-    ans = get_trip_answers(datetime(2019,5,21),citizen)
-    update = update_answers(ans)
+    #ans = get_trip_answers(datetime(2019,5,21),citizen)
+    ans = get_failsafe_answers(datetime(2019,8,21),citizen)
+    update = update_answers(ans,qtype='Failsafe')
     print(update)
 
 
