@@ -43,6 +43,17 @@ class Question(Model):
     class Meta:
         database = db
 
+class QuestionFailsafe(Model):
+    question_id = AutoField(primary_key=True)
+    citizen_id = ForeignKeyField(Citizen, backref = 'questions')
+    task_id = CharField()
+    question_json = TextField()
+    date = DateTimeField()
+    file_path = TextField(null=True)
+    answer_json = TextField(null=True)
+
+    class Meta:
+        database = db
 
 def initialize(dbname):
     db.init(dbname)

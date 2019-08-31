@@ -42,9 +42,16 @@ def ask_failsafe_question(config,citizen,date):
             'usersalt': citizen.citizen_id
             }
     r = requests.get(config['ilog']['serverURL']+'/sendtask',headers=headers).json()
+    print(r)
     if (r['status'] == 'error_message'):
         print(r['payload']['results'])
         return None
+    question = dm.QuestionFailsafe.create(
+        citizen_id = citizen.citizen_id,
+        task_id = r['payload']['message'],
+        date = date
+        )
+    question.save()
     return r
 
 def ask_missing_question(config,citizen,date):
@@ -61,6 +68,15 @@ def ask_missing_question(config,citizen,date):
             'usersalt': citizen.citizen_id
             }
     r = requests.get(config['ilog']['serverURL']+'/sendtask',headers=headers).json()
+    if (r['status'] == 'error_message'):
+        print(r['payload']['results'])
+        return None
+    question = dm.QuestionFailsafe.create(
+        citizen_id = citizen.citizen_id,
+        task_id = r['payload']['message'],
+        date_sent = date
+        )
+    question.save()
 
 def create_db_question(config,trip):
     #template_path = config['templateDir']['questions']+"trip-detected-question.json"
