@@ -161,7 +161,7 @@
 	 ],
          "id":4,
          "t":"wv",
-         "url":"https://msui.websci.net/?blank=1&f={date}_{citizen_id}_manual_trip_0"
+         "url":"https://msui.websci.net/?blank=1&f={tui_path}/{citizen_id}/{date}_manual_trip_0"
       }
    },
    {
@@ -230,7 +230,7 @@
 	 ],
          "id":6,
          "t":"wv",
-         "url":"https://msui.websci.net/?blank=1&f={date}_{citizen_id}_manual_trip_1"
+         "url":"https://msui.websci.net/?blank=1&f={tui_path}/{citizen_id}/{date}_manual_trip_1"
       }
    },
    {
@@ -300,7 +300,7 @@
 	 ],
          "id":8,
          "t":"wv",
-         "url":"https://msui.websci.net/?blank=1&f={date}_{citizen_id}_manual_trip_2"
+         "url":"https://msui.websci.net/?blank=1&f={tui_path}/{citizen_id}/{date}_manual_trip_2"
       }
    },
    {
@@ -369,7 +369,7 @@
 	 ],
          "id":10,
          "t":"wv",
-         "url":"https://msui.websci.net/?blank=1&f={date}_{citizen_id}_manual_trip_3"
+         "url":"https://msui.websci.net/?blank=1&f={tui_path}/{citizen_id}/{date}_manual_trip_3"
       }
    },
    {
