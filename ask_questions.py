@@ -30,7 +30,7 @@ def ask_question(question,config):
 
 def ask_failsafe_question(config,citizen,date):
     template_path = config['templateDir']['questions']+"no-trip-detected-question-alt.json"
-    failsafe = gq.gen_failsafe_question(template_path,'/journeys/ql6/test_trips',citizen,date)
+    failsafe = gq.gen_failsafe_question(template_path,'/journeys/ql6/',citizen,date)
     headers = {
             'cache-control' : 'no-cache' ,
             'email': config['ilog']['serverlogin'] , 
@@ -56,7 +56,7 @@ def ask_failsafe_question(config,citizen,date):
 
 def ask_missing_question(config,citizen,date):
     template_path = config['templateDir']['questions']+"missing-trip-question.json"
-    missing = gq.gen_missing_question(template_path,'/journeys/ql6/test_trips',citizen,date)
+    missing = gq.gen_missing_question(template_path,'/journeys/ql6/',citizen,date)
     headers = {
             'cache-control' : 'no-cache' ,
             'email': config['ilog']['serverlogin'] , 
@@ -74,7 +74,7 @@ def ask_missing_question(config,citizen,date):
     question = dm.QuestionFailsafe.create(
         citizen_id = citizen.citizen_id,
         task_id = r['payload']['message'],
-        date_sent = date
+        date = date
         )
     question.save()
 
@@ -117,7 +117,7 @@ def ask_practice_question(config,citizen):
             'cache-control' : 'no-cache' ,
             'email': config['ilog']['serverlogin'] , 
             'password': config['ilog']['serverpassword'] ,
-            't_title': 'QROWDLab6 TEST QUESTION' , 
+            't_title': 'QROWDLab - DOMANDA DI PROVA' , 
             't_until': '86400' , 
             'content': json.dumps(q_json),
             'usersalt': citizen.citizen_id
