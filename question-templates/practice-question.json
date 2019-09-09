@@ -78,14 +78,14 @@
          "c":[ ],
          "id":6,
          "t":"wv",
-         "url":"http://msui.websci.net/?f=/journeys/ql6/practice-trips/{}-practice-blank.json"
+         "url":"http://msui.websci.net/?blank=1?f=/journeys/ql6/{}-practice-blank.json"
       }
    },
   {
       "q":{
          "id":7,
          "c":[{
-               "q":6,
+               "q":4,
                "a":1
             } 
 ],
