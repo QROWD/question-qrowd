@@ -124,9 +124,9 @@ def ask_practice_question(config,citizen):
             }
     r = requests.get(config['ilog']['serverURL']+'/sendtask',headers=headers).json()
     if (r['status'] == 'error_message'):
-        print(r)
+        print("Error")
         #print(r['payload']['results'])
-        return None
+        #return None
     return r
 
 def send_message(config,citizen,message):
@@ -176,7 +176,9 @@ def send_error_message(config):
 
 def process_citizen(config,citizen,date):
     #Today trips of this citizen
-    trips = dm.Trip.select().where((dm.Trip.citizen_id == citizen.citizen_id) & (dm.Trip.start_timestamp.between(date,date+timedelta(days=1))))
+    #trips = dm.Trip.select().where((dm.Trip.citizen_id == citizen.citizen_id) & (dm.Trip.start_timestamp.between(date,date+timedelta(days=1))))
+    # Grouping by file path ensures one question per trip instead of segment
+    trips = dm.Trip.select().where((dm.Trip.citizen_id == citizen.citizen_id) & (dm.Trip.start_timestamp.between(date,date+timedelta(days=1)))).group_by(dm.Trip.json_file_path)
     print("Processing citizen "+ str(citizen.citizen_id))
     for trip in trips:
         print("Trip_id "+ str(trip.trip_id))
@@ -195,18 +197,19 @@ def process_citizen(config,citizen,date):
 
 
 def main():
-    #DATE = (datetime.today()-timedelta(days=1)).replace(hour=0,minute=0,second=0,microsecond=0)
-    DATE=datetime(2019,5,21)
+    DATE = (datetime.today()-timedelta(days=1)).replace(hour=0,minute=0,second=0,microsecond=0)
+    #DATE=datetime(2019,5,21)
     config = configparser.ConfigParser()
-    config.read('./ql6-config.ini')
+    config.read('question-qrowd/ql6-config.ini')
     dm.db.init(config['db']['dbPath'])
     citizens = dm.Citizen.select()
+    #citizens = [dm.Citizen.get_by_id('')]
     if TEST:
-        print("Sending Test question")
+        print("\nSending Test question")
         for citizen in citizens:
             print("citizen_id ",citizen.citizen_id)
             r = ask_practice_question(config,citizen)
-            print(r.text)
+            print(r)
     else:
         #Today's trips
         print("Processing trips of date "+ DATE.strftime("%Y%m%d"))
